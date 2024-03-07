@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Update</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Frontend</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/add">Add user</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="mx-auto w-25" style="max-width: 100%">
+    <h2 class="text-center mb-3">Update</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" name="nombre" id="nombre" formControlName="nombre" class="form-control" [placeholder]="user?.nombre" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="apellido" class="form-label">Nombre</label>
+          <input type="text" name="apellido" id="apellido" formControlName="apellido" class="form-control" [placeholder]="user?.apellido"  required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="ci" class="form-label">Nombre</label>
+          <input type="text" name="ci" id="ci" formControlName="ci" class="form-control" [placeholder]="user?.ci" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="edad" class="form-label">Nombre</label>
+          <input type="number" name="edad" id="edad" formControlName="edad" class="form-control" [placeholder]="user?.edad" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="sexo" class="form-label">Nombre</label>
+          <input type="text" name="sexo" id="sexo" formControlName="sexo" class="form-control" [placeholder]="user?.sexo"  required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="correo" class="form-label">Nombre</label>
+          <input type="email" name="correo" id="correo" formControlName="correo" class="form-control" [placeholder]="user?.correo" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="password" class="form-label">Nombre</label>
+          <input type="password" name="password" id="password" formControlName="password" class="form-control" [placeholder]="user?.password" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="status" class="form-label">Nombre</label>
+          <input type="text" name="status" id="status" formControlName="status" class="form-control" [placeholder]="user?.status" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="Tipo_id" class="form-label">Nombre</label>
+          <input type="number" name="Tipo_id" id="Tipo_id" formControlName="Tipo_id" class="form-control" [placeholder]="user?.Tipo_id" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <input type="submit" value="Submit" class="btn btn-primary w-100" [disabled]="!form.valid">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+
