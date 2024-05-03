@@ -1,60 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from "../../users.service";
-import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {TipoUsuarioDto} from "../../dto/tipoUsuarioDto";
-import {map, Observable, startWith} from "rxjs";
-
+import { UsersService } from "../../users.service";
+import { Router } from "@angular/router";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { TipoUsuarioDto } from "../../dto/tipoUsuarioDto";
+import { map, Observable, startWith } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent{
+export class AddUserComponent implements OnInit {
 
-  constructor(private userService: UsersService, private router: Router) { }
-  data: any
-  tipoUsuario: TipoUsuarioDto[] = [];
+  constructor(private userService: UsersService, private router: Router, private http: HttpClient) { }
+
+  data: any;
+  Tipo_id: TipoUsuarioDto[] = [];
+  options: string[] = [];
   myControl = new FormControl('');
-  options: String[] = [];
-  filteredOptions: Observable<String[]> | undefined;
+  filteredOptions: Observable<string[]> | undefined;
 
-  ngOnInit(){
-    this.userService.getTipoUsuario().subscribe({
-      next:(data: TipoUsuarioDto[])=>{
+  ngOnInit() {
+    this.userService.getTipoUsuario().subscribe((data: TipoUsuarioDto[]) => {
       console.log(data);
-      this.tipoUsuario = data;
-      this.options =this.tipoUsuario.map(tipo=>tipo.nombre);
-      this.filteredOptions =this.myControl.valueChanges.pipe(
+      this.Tipo_id = data;
+      this.options = this.Tipo_id.map(tipo => tipo.name);
+      this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value||'')),
+        map(value => this._filter(value || '')),
       );
-      }
-    })
+    });
   }
-  private _filter(value: string): String[] {
-    const filterValue = value.toLowerCase();
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
   form = new FormGroup({
-    nombre: new FormControl('', Validators.required),
-    apellido: new FormControl('', Validators.required),
-    ci: new FormControl('', Validators.required),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     edad: new FormControl('', Validators.required),
     sexo: new FormControl('', Validators.required),
-    correo: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    status: new FormControl('', Validators.required),
-    Tipo_id: new FormControl(this.tipoUsuario.find((tipo:TipoUsuarioDto)=>tipo.nombre === this.myControl.value), Validators.required),
-  })
-  addUser(){
-    this.data = this.form.value
-    this.userService.addUser(this.data).subscribe(data=>{
-      this.router.navigate(['/'])
-    })
+  });
+
+  onChangeTipoUsuario(event: any) {
+    const tipoSeleccionado = event.target.value;
+    const tipo = this.Tipo_id.find(tipo => tipo.name === tipoSeleccionado);
+    if (tipo) {
+      this.form.controls['Tipo_id'].setValue(tipo.id);
+    }
   }
 
-
+  addUser() {
+    this.data = this.form.value;
+    this.userService.addAdmin(this.data).subscribe(data => {
+      this.router.navigate(['/usuarios']);
+    });
+  }
 }

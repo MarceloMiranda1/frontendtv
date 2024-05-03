@@ -8,86 +8,73 @@
   <title>Add user</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Frontend</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo" style="width: 50px; margin-right: 20px;">
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-        <a class="nav-link" routerLink="/add">Add user</a>
+        <a class="nav-link" aria-current="page" routerLink="/usuarios">Lista Usuarios</a>
+        <a class="nav-link" routerLink="/usuarios/estudiantes">Estudiantes</a>
+        <a class="nav-link">Cerrar Sesión</a>
       </div>
     </div>
   </div>
 </nav>
 <div class="container">
-  <div class="mx-auto w-25" style="max-width: 100%">
-    <h2 class="text-center mb-3">Add User</h2>
+  <div class="mx-auto w-75" style="max-width: 100%">
+    <h1 class="text-center mb-3">Agregar Usuario</h1>
     <form [formGroup]="form" (ngSubmit)="addUser()">
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" name="nombre" id="nombre" formControlName="nombre" class="form-control" placeholder="Nombre" required>
+      <div class="form-row">
+        <div class="col">
+          <label for="first_name" class="form-label">Nombre</label>
+          <input type="text" name="first_name" id="first_name" formControlName="first_name" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="col">
+          <label for="last_name" class="form-label">Apellido</label>
+          <input type="text" name="last_name" id="last_name" formControlName="last_name" class="form-control" placeholder="Apellido" required>
+        </div>
+        <div class="col">
+          <label for="username" class="form-label">Carnet de Identidad</label>
+          <input type="text" name="username" id="username" formControlName="username" class="form-control" placeholder="CI" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="apellido" class="form-label">Nombre</label>
-          <input type="text" name="apellido" id="apellido" formControlName="apellido" class="form-control" placeholder="Apellido" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="ci" class="form-label">Nombre</label>
-          <input type="text" name="ci" id="ci" formControlName="ci" class="form-control" placeholder="CI" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="edad" class="form-label">Nombre</label>
+      <div class="form-row">
+        <div class="col">
+          <label for="edad" class="form-label">Edad</label>
           <input type="number" name="edad" id="edad" formControlName="edad" class="form-control" placeholder="Edad" required>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="sexo" class="form-label">Nombre</label>
+        <div class="col">
+          <label for="sexo" class="form-label">Sexo</label>
           <input type="text" name="sexo" id="sexo" formControlName="sexo" class="form-control" placeholder="Sexo" required>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="correo" class="form-label">Nombre</label>
-          <input type="email" name="correo" id="correo" formControlName="correo" class="form-control" placeholder="Correo" required>
+        <div class="col">
+          <label for="email" class="form-label">Correo</label>
+          <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Correo" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="password" class="form-label">Nombre</label>
-          <input type="text" name="password" id="password" formControlName="password" class="form-control" placeholder="Password" required>
+
+      <div class="form-row">
+        <div class="col">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="status" class="form-label">Nombre</label>
-          <input type="text" name="status" id="status" formControlName="status" class="form-control" placeholder="Estado" required>
+        <div class="col">
+          <label for="Tipo_id" class="form-label">Tipo de Usuario:</label>
+
+          <select id="Tipo_id" name="Tipo_id" formControlName="Tipo_id" (change)="onChangeTipoUsuario($event)" class="form-control">
+            <option *ngFor="let opcion of Tipo_id" [value]="opcion.id">{{ opcion.name }}</option>
+          </select>
         </div>
+
       </div>
+
       <div class="row">
-        <div class="col-md-12 form-group mb-3">
-          <label for="Tipo_id" class="form-label">Nombre</label>
-          <input type="text" name="Tipo_id" id="Tipo_id" formControlName="Tipo_id" class="form-control" placeholder="Tipo_id" matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <input type="submit" value="Submit" class="btn btn-primary w-100" [disabled]="!form.valid">
+        <div class="col-md-12 form-group text-center">
+
+          <input type="submit" value="Agregar" class="btn btn-success w-25 mx-2" [disabled]="!form.valid">
+          <input type="submit" value="Cancelar" class="btn btn-danger w-25 mx-2" routerLink="/usuarios">
+
         </div>
       </div>
     </form>

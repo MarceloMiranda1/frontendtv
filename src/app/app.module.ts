@@ -7,19 +7,39 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import {HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { LoginComponent } from './components/login/login.component';
+import { ViewStudentComponent } from './components/view-student/view-student.component';
+import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
+import { ViewTutorComponent } from './components/view-tutor/view-tutor.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import { InstruccionComponent } from './components/instruccion/instruccion.component';
+import {MatTableModule} from "@angular/material/table";
+import { Test1Component } from './components/test1/test1.component';
+import { FormStudentComponent } from './components/form-student/form-student.component';
+import { EncuestaComponent } from './components/form-student/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddUserComponent,
     UpdateUserComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    LoginComponent,
+    ViewStudentComponent,
+    AddTutorComponent,
+    ViewTutorComponent,
+    InstruccionComponent,
+    Test1Component,
+    FormStudentComponent,
+    EncuestaComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +50,12 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSlideToggleModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule,
+    MatCardModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

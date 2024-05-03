@@ -11,15 +11,15 @@ a{
 .col {
   margin-right: 2%;
 }
-nav{
-  background-color: #002244;
-}
-.nav-link:hover {
-  color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
-}
 .container {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   height: 70%; /* Ocupa toda la altura de la ventana */
+}
+nav{
+  background-color: #002244;
+}
+.nav-link:hover {
+  color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
 }

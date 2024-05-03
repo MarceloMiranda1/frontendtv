@@ -1,0 +1,36 @@
+.container {
+  text-align: center;
+}
+
+h1 {
+  background-color: #002244; /* Fondo azul oscuro */
+  color: white; /* Texto blanco */
+  padding-left: 20px; /* Espacio a la izquierda para la imagen */
+  display: flex;
+  align-items: center;
+  font-size: 36px;
+
+}
+img {
+  margin-right: 20px; /* Espacio entre la imagen y el texto */
+  width: 20%; /* Ancho deseado para la imagen */
+  height: auto; ; /* Espacio entre la imagen y el texto */
+}
+p{
+  text-align: justify
+}
+.pregunta{
+  border-radius: 10px; /* Ajusta según tu preferencia */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombras suave */
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 30%;
+  transition: transform 0.3s ease; /* Transición suave */
+  margin-bottom: 20px;
+}
+input {
+  border-color: #ADD8E6;
+  border-width: 2px;
+}
+
+

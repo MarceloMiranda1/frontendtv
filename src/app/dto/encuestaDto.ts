@@ -1,0 +1,11 @@
+export interface EncuestaDto{
+  id: number| null;
+  pregunta1: string;
+  pregunta2: string;
+  pregunta3: string;
+  pregunta4: string;
+  pregunta5: string;
+  pregunta6: string;
+  pregunta7: string;
+  usuario_id: number;
+}

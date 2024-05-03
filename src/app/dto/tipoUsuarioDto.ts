@@ -1,4 +1,4 @@
 export interface TipoUsuarioDto{
   id: number;
-  nombre: string;
+  name: string;
 }

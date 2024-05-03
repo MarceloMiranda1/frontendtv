@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="mx-auto w-75" style="max-width: 100%">
+    <h1 class="text-center mb-3">Agregar Usuario</h1>
+    <form [formGroup]="form" (ngSubmit)="addStudent()">
+      <div class="form-row">
+        <div class="col">
+          <label for="first_name" class="form-label">Nombre</label>
+          <input type="text" name="first_name" id="first_name" formControlName="first_name" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="col">
+          <label for="last_name" class="form-label">Apellido</label>
+          <input type="text" name="last_name" id="last_name" formControlName="last_name" class="form-control" placeholder="Apellido" required>
+        </div>
+        <div class="col">
+          <label for="username" class="form-label">Carnet de Identidad</label>
+          <input type="text" name="username" id="username" formControlName="username" class="form-control" placeholder="Carnet de Identidad" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="edad" class="form-label">Edad</label>
+          <input type="number" name="edad" id="edad" formControlName="edad" class="form-control" placeholder="Edad" required>
+        </div>
+        <div class="col">
+          <label for="sexo" class="form-label">Sexo</label>
+          <input type="text" name="sexo" id="sexo" formControlName="sexo" class="form-control" placeholder="Sexo" required>
+        </div>
+        <div class="col">
+          <label for="email" class="form-label">Correo</label>
+          <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Correo" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="colegio" class="form-label">Colegio</label>
+          <input type="text" name="colegio" id="colegio" formControlName="colegio" class="form-control" placeholder="Colegio" required>
+        </div>
+        <div class="col">
+          <label for="celular" class="form-label">Nro Celular</label>
+          <input type="number" name="celular" id="celular" formControlName="celular" class="form-control" placeholder="Celular" required>
+        </div>
+        <div class="col">
+          <label for="grado_escolar" class="form-label">Grado Escolar</label>
+          <input type="text" name="grado_escolar" id="grado_escolar" formControlName="grado_escolar" class="form-control" placeholder="Grado Escolar" required>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group text-center">
+
+          <input type="submit" value="Siguiente" class="btn btn-success w-25 mx-2" [disabled]="!form.valid" >
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

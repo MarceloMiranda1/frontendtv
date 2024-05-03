@@ -1,12 +1,14 @@
 export interface Usuariodto{
-  idUsuario: number;
-  nombre: string;
-  apellido: string;
-  ci: string;
+  id: number;
+  first_name: string;
+  last_name: string;
+  username: string;
   edad: number;
   sexo: string;
-  correo: string;
+  email: string;
+  colegio: string;
   password: string;
-  status: boolean;
-  Tipo_id: number;
+  celular: string;
+  grado_escolar: string;
+  groups: number;
 }
