@@ -27,7 +27,7 @@ export class FormStudentComponent implements OnInit {
     email: new FormControl('', Validators.required),
     colegio: new FormControl('', Validators.required),
     celular: new FormControl('', Validators.required),
-    password: new FormControl('12345678900', Validators.required),
+    password: new FormControl('prueba', Validators.required),
     grado_escolar: new FormControl('', Validators.required),
   });
 

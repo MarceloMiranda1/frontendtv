@@ -66,6 +66,18 @@ export class Test1Component implements OnInit {
     // Carga las nuevas opciones
     this.respuesta ='';
     // post de almacenamiento de respuesta
+    this.usersService.addRespuestaSA(this.opciones_actual.id, {
+      id_test: 1,
+      id_apartado: 1,
+      id_pregunta: this.pregunta_actual.id,
+      valor: 0,
+      opcion_id: this.opciones_actual.id,
+      usuario_id: 1
+    }).subscribe((data) => {
+      console.log(data);
+    }, (error) => {
+      console.error('Error al almacenar la respuesta:', error);
+    });
     this.usersService.opcion(index + 1).subscribe((data) => {
       this.opciones_actual = data;
     }, (error) => {

@@ -11,6 +11,7 @@ import {PreguntasaDto} from "./dto/preguntasaDto";
 import {OpcionsaDto} from "./dto/opcionsaDto";
 import {EncuestaDto} from "./dto/encuestaDto";
 import {UsuarioGrupoDto} from "./dto/usuarioGrupoDto";
+import {RespuestaSADto} from "./dto/respuestaSADto";
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,22 @@ export class UsersService {
   opcion(pregunta_id:number):Observable<OpcionsaDto>{
     return this.http.get<OpcionsaDto>(`${this.url}test/seccion/pregunta/opcion/${pregunta_id}`);
   }
+
+  getRespuestaSA(usuario_id:number):Observable<RespuestaSADto>{
+    return this.http.get<RespuestaSADto>(`${this.url}respuestaSA/${usuario_id}`);
+  }
+
+  addRespuestaSA(opcion_id: number, user: {
+    opcion_id: any;
+    usuario_id: number;
+    id_test: number;
+    id_pregunta: any;
+    valor: number;
+    id_apartado: number
+  }): Observable<RespuestaSADto>{
+    return this.http.post<RespuestaSADto>(`${this.url}respuestaSA/${opcion_id}`,user);
+  }
+
 
 
 
