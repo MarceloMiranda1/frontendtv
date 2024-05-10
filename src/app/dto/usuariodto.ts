@@ -11,4 +11,6 @@ export interface Usuariodto{
   celular: string;
   grado_escolar: string;
   groups: number;
+
+
 }

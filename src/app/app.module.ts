@@ -25,6 +25,8 @@ import {MatTableModule} from "@angular/material/table";
 import { Test1Component } from './components/test1/test1.component';
 import { FormStudentComponent } from './components/form-student/form-student.component';
 import { EncuestaComponent } from './components/form-student/encuesta/encuesta.component';
+import { LoginStudentsComponent } from './components/login/login-students/login-students.component';
+import { InformacionTestComponent } from './components/informacion-test/informacion-test.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { EncuestaComponent } from './components/form-student/encuesta/encuesta.c
     InstruccionComponent,
     Test1Component,
     FormStudentComponent,
-    EncuestaComponent
+    EncuestaComponent,
+    LoginStudentsComponent,
+    InformacionTestComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ export class ViewUserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource: MatTableDataSource<UsuarioGrupoDto> = new MatTableDataSource<UsuarioGrupoDto>([]);
+  dataSource: MatTableDataSource<Usuariodto> = new MatTableDataSource<Usuariodto>([]);
   displayedColumns: string[] = ['ID', 'nombre', 'apellido', 'ci', 'edad', 'sexo', 'correo', 'tipo', 'acciones'];
 
   users: any[] | undefined;
@@ -33,7 +33,7 @@ export class ViewUserComponent implements OnInit {
     this.usersService.getUser().subscribe(data => {
       this.users = data;
       console.log(data)
-      this.dataSource = new MatTableDataSource<UsuarioGrupoDto>(this.users);
+      this.dataSource = new MatTableDataSource<Usuariodto>(this.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

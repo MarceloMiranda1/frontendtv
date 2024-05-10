@@ -10,6 +10,8 @@ import {InstruccionComponent} from "./components/instruccion/instruccion.compone
 import {Test1Component} from "./components/test1/test1.component";
 import {FormStudentComponent} from "./components/form-student/form-student.component";
 import {EncuestaComponent} from "./components/form-student/encuesta/encuesta.component";
+import {LoginStudentsComponent} from "./components/login/login-students/login-students.component";
+import {InformacionTestComponent} from "./components/informacion-test/informacion-test.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path: 'pregunta', component: Test1Component},
   {path: 'form_student', component: FormStudentComponent},
   {path: 'encuesta/:usuario_id', component:EncuestaComponent},
+  {path: 'login_students', component:LoginStudentsComponent},
+  {path: 'informacionTest/:usuario_id', component:InformacionTestComponent},
   {path: '', component:LoginComponent}
 ];
 

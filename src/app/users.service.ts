@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Usuariodto} from "./dto/usuariodto";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {Observable, observable} from "rxjs";
+import {BehaviorSubject, map, Observable, observable} from "rxjs";
 import {TutorDto} from "./dto/tutorDto";
 import {TestDto} from "./dto/testDto";
 import {TipoUsuarioDto} from "./dto/tipoUsuarioDto";
@@ -13,6 +13,7 @@ import {EncuestaDto} from "./dto/encuestaDto";
 import {UsuarioGrupoDto} from "./dto/usuarioGrupoDto";
 import {RespuestaSADto} from "./dto/respuestaSADto";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,11 +21,34 @@ export class UsersService {
 
   private url: string = "http://localhost:8000/api/"
   private url2: string = "http://localhost:8000/accounts/"
-  constructor(private http: HttpClient) {  }
+  private currentUserSubject: BehaviorSubject<Usuariodto | null>;
 
-  getUser2():Observable<UsuarioGrupoDto[]>{
-    return this.http.get<UsuarioGrupoDto[]>(`${this.url}user_groups/`);
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<Usuariodto | null>(null);
   }
+
+  public get currentUserValue(): Usuariodto | null {
+    return this.currentUserSubject.value;
+  }
+
+  loginUser(username: string, password: string): Observable<Usuariodto> {
+    const url = `${this.url2}login/`;
+    const body = {
+      username: username,
+      password: password
+    };
+    return this.http.post<Usuariodto>(url, body).pipe(
+      map(user => {
+        // Almacena el usuario en el servicio
+        this.currentUserSubject.next(user);
+        return user;
+      })
+    );
+  }
+
+  getGroup(user_id: number): Observable<UsuarioGrupoDto> {
+  return this.http.get<UsuarioGrupoDto>(`${this.url}user_group/${user_id}`);
+}
 
   addEncuesta(usuario_id:number, user:EncuestaDto): Observable<EncuestaDto>{
     return this.http.post<EncuestaDto>(`${this.url}encuesta/${usuario_id}`,user);
@@ -62,14 +86,6 @@ export class UsersService {
   deleteUser(idUsuario:number): Observable<Usuariodto>{
     return this.http.delete<Usuariodto>(`${this.url}user/${idUsuario}`);
   }
-  loginUser(username:string,password:string): Observable<any>{
-    const url = `${this.url2}login/`;
-    const body = {
-      username: username,
-      password: password
-    };
-    return this.http.post<any>(url,body);
-  }
   // log out por el momento deshabilitado
   /*logOut():Observable<any>{
     return this.http.post<any>(`${this.url2}logout/`);
@@ -77,14 +93,26 @@ export class UsersService {
   */
   // test services
 
+  testGet():Observable<any> {
+    return this.http.get<any>(`${this.url}test/`);
+  }
   test(id:number):Observable<TestDto>{
     return this.http.get<TestDto>(`${this.url}test/${id}`);
+  }
+  seccionGet():Observable<any>{
+    return this.http.get<any>(`${this.url}seccion/`);
   }
   seccion(test_id:number):Observable<SeccionDto>{
     return this.http.get<SeccionDto>(`${this.url}test/seccion/${test_id}`);
   }
+  preguntasaGet():Observable<any>{
+    return this.http.get<any>(`${this.url}preguntasa/`);
+  }
   pregunta_sa(seccion_id:number):Observable<PreguntasaDto>{
     return this.http.get<PreguntasaDto>(`${this.url}test/seccion/pregunta/${seccion_id}`);
+  }
+  opcionsaGet():Observable<any>{
+    return this.http.get<any>(`${this.url}opcionsa/`);
   }
   opcion(pregunta_id:number):Observable<OpcionsaDto>{
     return this.http.get<OpcionsaDto>(`${this.url}test/seccion/pregunta/opcion/${pregunta_id}`);
@@ -95,17 +123,16 @@ export class UsersService {
   }
 
   addRespuestaSA(opcion_id: number, user: {
-    opcion_id: any;
+    opcion_id: number;
     usuario_id: number;
     id_test: number;
-    id_pregunta: any;
+    id_pregunta: number;
     valor: number;
     id_apartado: number
   }): Observable<RespuestaSADto>{
-    return this.http.post<RespuestaSADto>(`${this.url}respuestaSA/${opcion_id}`,user);
+    return this.http.post<RespuestaSADto>(`${this.url}respuestaSa/${opcion_id}`,user);
   }
-
-
-
-
+  getRespuestaSAById(usuario_id:number):Observable<RespuestaSADto>{
+    return this.http.get<RespuestaSADto>(`${this.url}viewSa/${usuario_id}`);
+  }
 }

@@ -1,0 +1,23 @@
+<body>
+
+<div id="contenedor">
+  <div id="central">
+    <div id="login">
+      <div class="titulo">
+        Bienvenido
+      </div>
+      <form id="loginform" [formGroup]="loginForm">
+
+        <input type="text" id="username" formControlName="username" name="username" placeholder="CI" required>
+
+        <input type="password" id="password" formControlName="password" name="password" placeholder="Contraseña" required>
+
+        <button type="submit" name="Ingresar" (click)="login()">Iniciar Sesión</button>
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
