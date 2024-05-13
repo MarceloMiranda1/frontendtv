@@ -12,9 +12,8 @@ import {FormStudentComponent} from "./components/form-student/form-student.compo
 import {EncuestaComponent} from "./components/form-student/encuesta/encuesta.component";
 import {LoginStudentsComponent} from "./components/login/login-students/login-students.component";
 import {InformacionTestComponent} from "./components/informacion-test/informacion-test.component";
-import {
-  InformacionEncuestaComponent
-} from "./components/informacion-test/informacion-encuesta/informacion-encuesta.component";
+import {InformacionEncuestaComponent} from "./components/informacion-test/informacion-encuesta/informacion-encuesta.component";
+import {MenuStudentComponent} from "./components/menu-student/menu-student.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -27,6 +26,7 @@ const routes: Routes = [
   {path: 'form_student', component: FormStudentComponent},
   {path: 'encuesta/:usuario_id', component:EncuestaComponent},
   {path: 'login_students', component:LoginStudentsComponent},
+  {path: 'menu-student', component:MenuStudentComponent},
   {path: 'informacionTest/:usuario_id', component:InformacionTestComponent},
   {path: 'informacionEncuesta/:usuario_id', component:InformacionEncuestaComponent},
   {path: '', component:LoginComponent}

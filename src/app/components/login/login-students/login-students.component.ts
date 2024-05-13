@@ -30,7 +30,7 @@ export class LoginStudentsComponent {
         this.usuarioDto = data;
         console.log(this.usuarioDto);
         if (data){
-          this.router.navigate([`/instrucciones`]);
+          this.router.navigate([`/menu-student`]);
         }
       }, error: (error: any) => {
         console.log(error);

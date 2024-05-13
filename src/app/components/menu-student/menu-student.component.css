@@ -1,0 +1,35 @@
+nav{
+  background-color: #002244;
+}
+h1{
+  /*text-align: center;*/
+  color: white;
+}
+.container-fluid {
+  display: flex;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.logout-link {
+  margin-left: auto;
+  background-color: #002244;
+  color: white;
+  text-decoration: none;
+}
+p {
+  font-size: 20px;
+  text-align: center;
+  display: block;
+  margin-bottom: 20px; /* Ajusta este valor para cambiar el espacio entre el párrafo y el contenedor de los botones */
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

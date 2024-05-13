@@ -31,6 +31,9 @@ import {MatTableExporterModule} from "mat-table-exporter";
 import { InformacionEncuestaComponent } from './components/informacion-test/informacion-encuesta/informacion-encuesta.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { MensajeTestComponent } from './components/mensaje-test/mensaje-test.component';
+import { MenuStudentComponent } from './components/menu-student/menu-student.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { MensajeTestComponent } from './components/mensaje-test/mensaje-test.com
     LoginStudentsComponent,
     InformacionTestComponent,
     InformacionEncuestaComponent,
-    MensajeTestComponent
+    MensajeTestComponent,
+    MenuStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ import { MensajeTestComponent } from './components/mensaje-test/mensaje-test.com
     MatButtonModule,
     MatTableModule,
     MatTableExporterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
