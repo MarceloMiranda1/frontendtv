@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
@@ -11,15 +11,18 @@ import {TestDto} from "../../dto/testDto";
 import {SeccionDto} from "../../dto/seccionDto";
 import {PreguntasaDto} from "../../dto/preguntasaDto";
 import {OpcionsaDto} from "../../dto/opcionsaDto";
+import {MatTableExporterDirective} from "mat-table-exporter";
 
 @Component({
   selector: 'app-informacion-test',
   templateUrl: './informacion-test.component.html',
   styleUrls: ['./informacion-test.component.css']
 })
-export class InformacionTestComponent implements OnInit {
+export class InformacionTestComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTableExporterDirective) exporter: MatTableExporterDirective | undefined;
+
 
   dataSource: MatTableDataSource<RespuestaSADto> = new MatTableDataSource<RespuestaSADto>([]);
   displayedColumns: string[] = ['Test', 'Apartado', 'Pregunta', 'Opcion', 'Valor'];
@@ -31,11 +34,14 @@ export class InformacionTestComponent implements OnInit {
   pregunta: PreguntasaDto[] = [];
   opcion: OpcionsaDto[] = [];
   id_usuario: any;
+  totalValue: number = 0;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
 
   }
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit(): void {
     this.id_usuario = this.route.snapshot.params['usuario_id']
     this.usersService.getUserById(this.id_usuario).subscribe(data => {
@@ -47,6 +53,9 @@ export class InformacionTestComponent implements OnInit {
     this.loadApartado();
     this.loadPregunta();
     this.loadOpcion()
+    const fileName = `${this.users.first_name}_${this.users.last_name}_Informe`;
+    this.exporter?.exportTable('xlsx', {fileName});
+
   }
   loadRespuestas(): void {
     this.usersService.getRespuestaSAById(this.id_usuario).subscribe(data => {
@@ -55,6 +64,8 @@ export class InformacionTestComponent implements OnInit {
       this.dataSource = new MatTableDataSource<RespuestaSADto>(this.respuestas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.calculateTotalValue();
+
     });
   }
   loadTest(): void {
@@ -98,6 +109,12 @@ export class InformacionTestComponent implements OnInit {
   getOpcionName(id_opcion: number): string {
     const opcion = this.opcion.find(opcion => opcion.id === id_opcion);
     return opcion ? opcion.inciso : '';
+  }
+  calculateTotalValue() {
+    this.totalValue = 0;
+    this.dataSource.data.forEach(respuesta => {
+      this.totalValue += respuesta.valor;
+    });
   }
 
   onPageChange(event: any): void {

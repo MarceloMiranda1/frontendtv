@@ -53,28 +53,18 @@
           <input type="email" name="email" id="email" formControlName="email" class="form-control" placeholder="Correo" required>
         </div>
       </div>
-
       <div class="form-row">
         <div class="col">
           <label for="password" class="form-label">Contraseña</label>
           <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
-        </div>
-        <div class="col">
-          <label for="Tipo_id" class="form-label">Tipo de Usuario:</label>
-
-          <select id="Tipo_id" name="Tipo_id" formControlName="Tipo_id" (change)="onChangeTipoUsuario($event)" class="form-control">
-            <option *ngFor="let opcion of Tipo_id" [value]="opcion.id">{{ opcion.name }}</option>
-          </select>
         </div>
 
       </div>
 
       <div class="row">
         <div class="col-md-12 form-group text-center">
-
-          <input type="submit" value="Agregar" class="btn btn-success w-25 mx-2" [disabled]="!form.valid">
+          <input type="submit" value="Agregar" class="btn btn-success w-25 mx-2" [disabled]="!form.valid" (click)="addUser()">
           <input type="submit" value="Cancelar" class="btn btn-danger w-25 mx-2" routerLink="/usuarios">
-
         </div>
       </div>
     </form>

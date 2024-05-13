@@ -23,4 +23,8 @@ nav{
 .nav-link:hover {
   color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
 }
+#app .custom-snackbar {
+  background-color: #0727c4;
+  color: #a61122;
+}
 

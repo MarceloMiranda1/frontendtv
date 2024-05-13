@@ -27,6 +27,10 @@ import { FormStudentComponent } from './components/form-student/form-student.com
 import { EncuestaComponent } from './components/form-student/encuesta/encuesta.component';
 import { LoginStudentsComponent } from './components/login/login-students/login-students.component';
 import { InformacionTestComponent } from './components/informacion-test/informacion-test.component';
+import {MatTableExporterModule} from "mat-table-exporter";
+import { InformacionEncuestaComponent } from './components/informacion-test/informacion-encuesta/informacion-encuesta.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { MensajeTestComponent } from './components/mensaje-test/mensaje-test.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { InformacionTestComponent } from './components/informacion-test/informac
     FormStudentComponent,
     EncuestaComponent,
     LoginStudentsComponent,
-    InformacionTestComponent
+    InformacionTestComponent,
+    InformacionEncuestaComponent,
+    MensajeTestComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,9 @@ import { InformacionTestComponent } from './components/informacion-test/informac
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatTableExporterModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

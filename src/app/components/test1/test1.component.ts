@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
 import {HttpUserEvent} from "@angular/common/http";
 import {Usuariodto} from "../../dto/usuariodto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-test1',
@@ -18,10 +19,9 @@ export class Test1Component implements OnInit {
   respuesta = '';
   usuarioActual: Usuariodto | null;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router) {
     this.contadorArray = Array.from({length: 5}, (_, index) => index);
     this.usuarioActual = this.usersService.currentUserValue;
-
   }
 
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class Test1Component implements OnInit {
       }
     );
   }
+
   getPregunta(): void {
     this.usersService.pregunta_sa(1).subscribe((data) => {
         this.pregunta = data;
@@ -51,6 +52,7 @@ export class Test1Component implements OnInit {
       }
     );
   }
+
   getOpcion(): void {
     this.usersService.opcion(2).subscribe((data) => {
         this.opcion = data;
@@ -65,6 +67,7 @@ export class Test1Component implements OnInit {
 
   siguiente(index: number): void {
     console.log(index);
+    console.log('Pregunta length:', this.pregunta.length);
     console.log(this.respuesta);
     const [opcionId, valor] = this.respuesta.split('-');
 
@@ -72,21 +75,27 @@ export class Test1Component implements OnInit {
     this.usersService.addRespuestaSA(parseInt(this.respuesta), {
       id_test: 1,
       id_apartado: 1,
-      id_pregunta: this.pregunta_actual.id,
+      id_pregunta: this.pregunta_actual.id - 1,
       valor: valor === 'true' ? 1 : 0,
       opcion_id: parseInt(opcionId),
-      usuario_id: this.usuarioActual ? this.usuarioActual.id : 0    }).subscribe((data) => {
+      usuario_id: this.usuarioActual ? this.usuarioActual.id : 0
+    }).subscribe((data) => {
       console.log(data);
-      this.respuesta ='';
+      this.respuesta = '';
     }, (error) => {
       console.error('Error al almacenar la respuesta:', error);
     });
-    this.usersService.opcion(index + 1).subscribe((data) => {
-      this.opciones_actual = data;
-    }, (error) => {
-      console.error('Error al obtener las opciones:', error);
-    });
+    if(index === this.pregunta.length - 1){
+      // Si es la última pregunta, navega a la nueva página
+      this.router.navigate(['/']);
+    } else {
+
+      // Si no es la última pregunta, carga la siguiente pregunta
+      this.usersService.opcion(index + 1).subscribe((data) => {
+        this.opciones_actual = data;
+      }, (error) => {
+        console.error('Error al obtener las opciones:', error);
+      });
+    }
   }
-
-
 }

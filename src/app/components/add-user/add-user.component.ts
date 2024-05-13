@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { TipoUsuarioDto } from "../../dto/tipoUsuarioDto";
 import { map, Observable, startWith } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-user',
@@ -13,29 +14,15 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AddUserComponent implements OnInit {
 
-  constructor(private userService: UsersService, private router: Router, private http: HttpClient) { }
+  constructor(private userService: UsersService, private router: Router, private http: HttpClient,private snackBar: MatSnackBar) { }
 
   data: any;
   Tipo_id: TipoUsuarioDto[] = [];
   options: string[] = [];
-  myControl = new FormControl('');
-  filteredOptions: Observable<string[]> | undefined;
+
 
   ngOnInit() {
-    this.userService.getTipoUsuario().subscribe((data: TipoUsuarioDto[]) => {
-      console.log(data);
-      this.Tipo_id = data;
-      this.options = this.Tipo_id.map(tipo => tipo.name);
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || '')),
-      );
-    });
-  }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   form = new FormGroup({
@@ -48,18 +35,17 @@ export class AddUserComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  onChangeTipoUsuario(event: any) {
-    const tipoSeleccionado = event.target.value;
-    const tipo = this.Tipo_id.find(tipo => tipo.name === tipoSeleccionado);
-    if (tipo) {
-      this.form.controls['Tipo_id'].setValue(tipo.id);
-    }
-  }
 
   addUser() {
     this.data = this.form.value;
     this.userService.addAdmin(this.data).subscribe(data => {
+      this.snackBar.open('Usuario agregado', 'Cerrar', {
+        duration: 2000,
+        panelClass: ['custom-snackbar'],
+        verticalPosition: 'top'
+      })
       this.router.navigate(['/usuarios']);
     });
+
   }
 }

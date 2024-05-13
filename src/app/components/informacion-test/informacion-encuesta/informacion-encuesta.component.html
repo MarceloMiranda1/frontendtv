@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <h1 class="text-center mb-3">Test de {{users.first_name}} {{users.last_name}}</h1>
       <div class="button-position d-flex align-items-center">
-        <button class="btn btn-success mb-3 me-3" (click)="exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe'})">Exportar</button>
+        <button class="btn btn-success mb-3 me-3" (click)="exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Encuesta'})">Exportar</button>
         <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">DAT</button>
         <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">IPP</button>
         <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">HSPQ</button>
@@ -27,46 +27,26 @@
         <input class="form-control mb-3 custom-input" type="search" placeholder="Buscador" aria-label="Search">
       </div>
 
-      <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z15 mb-3" #exporter="matTableExporter">
+      <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z15" #exporter="matTableExporter">
         <!-- Columna ID -->
-        <ng-container matColumnDef="Test">
-          <th mat-header-cell *matHeaderCellDef style="width: 30%;">Test</th>
-          <td mat-cell *matCellDef="let respuesta">{{getTestName(respuesta.id_test)}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Apartado">
-          <th mat-header-cell *matHeaderCellDef>Sección</th>
-          <td mat-cell *matCellDef="let respuesta">{{getSeccionName(respuesta.id_apartado) }}</td>
-        </ng-container>
-
-        <!-- Columna Apellido -->
         <ng-container matColumnDef="Pregunta">
-          <th mat-header-cell *matHeaderCellDef>Pregunta</th>
-          <td mat-cell *matCellDef="let respuesta">{{ getPreguntaName(respuesta.id_pregunta) }}</td>
+          <th mat-header-cell *matHeaderCellDef style="width: 30%;">Test</th>
+          <td mat-cell *matCellDef="let encuesta">{{encuesta.pregunta1}}</td>
+
         </ng-container>
 
-        <!-- Columna CI -->
-        <ng-container matColumnDef="Opcion">
-          <th mat-header-cell *matHeaderCellDef>Opcion</th>
-          <td mat-cell *matCellDef="let respuesta">{{ getOpcionName(respuesta.opcion_id) }}</td>
-        </ng-container>
+        <ng-container matColumnDef="Respuesta">
+          <th mat-header-cell *matHeaderCellDef>Respuesta</th>
+          <td mat-cell *matCellDef="let row">{{row.pregunta1}}</td>
 
-        <!-- Columna Edad -->
-        <ng-container matColumnDef="Valor">
-          <th mat-header-cell *matHeaderCellDef>Valor</th>
-          <td mat-cell *matCellDef="let respuesta">{{ respuesta.valor }}</td>
         </ng-container>
-
 
         <!-- Encabezado de la tabla -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <!-- Celdas de la tabla -->
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
       </table>
-      <div class="total-value-box">
-        Puntaje: {{ totalValue }}
-      </div>
+
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" (page)="onPageChange($event)"
                      [length]="dataSource.data.length" [pageSize]="5" showFirstLastButtons position="both">
       </mat-paginator>

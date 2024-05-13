@@ -48,8 +48,10 @@ export class UsersService {
 
   getGroup(user_id: number): Observable<UsuarioGrupoDto> {
   return this.http.get<UsuarioGrupoDto>(`${this.url}user_group/${user_id}`);
-}
-
+  }
+  getEncuesta(usuario_id: number): Observable<EncuestaDto> {
+    return this.http.get<EncuestaDto>(`${this.url}encuesta/${usuario_id}`);
+  }
   addEncuesta(usuario_id:number, user:EncuestaDto): Observable<EncuestaDto>{
     return this.http.post<EncuestaDto>(`${this.url}encuesta/${usuario_id}`,user);
   }
