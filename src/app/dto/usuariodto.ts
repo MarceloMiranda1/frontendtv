@@ -10,7 +10,10 @@ export interface Usuariodto{
   password: string;
   celular: string;
   grado_escolar: string;
-  groups: number;
-
+  token: Token;
+}
+interface Token{
+  refresh: string;
+  access: string;
 
 }

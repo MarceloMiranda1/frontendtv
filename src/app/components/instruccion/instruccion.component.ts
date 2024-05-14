@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-instruccion',
@@ -7,24 +8,42 @@ import {UsersService} from "../../users.service";
   styleUrls: ['./instruccion.component.css']
 })
 export class InstruccionComponent implements OnInit {
+  session: any;
   contadorArray: number[];
   test: any;
   seccion: any;
   pregunta: any;
   opcion: any;
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private route: ActivatedRoute) {
     this.contadorArray = Array.from({length: 5}, (_, index) => index);
   }
 
   ngOnInit(): void {
-    this.getTest();
-    this.getSeccion();
-    this.getPregunta();
-    this.getOpcion();
-  }
+    this.route.queryParams.subscribe(params => {
+      const testParam = params['test'];
+      const seccionParam = params['seccion'];
+      const preguntaParam = params['pregunta'];
+      const opcionParam = params['opcion'];
 
-  getTest(): void {
-    this.usersService.test(1).subscribe((data) => {
+      this.getTest(testParam);
+      this.getSeccion(seccionParam);
+      this.getPregunta(preguntaParam);
+      this.getOpcion(opcionParam);
+    });
+  }
+  getSession(): void {
+    this.usersService.getSession().subscribe(
+      data => {
+        this.session = data;
+        console.log(this.session);
+      },
+      error => {
+        console.error('Error al obtener la session:', error);
+      }
+    );
+  }
+  getTest(testParam: number): void {
+    this.usersService.test(testParam).subscribe((data) => {
         this.test = data;
         console.log(this.test);
       },
@@ -33,8 +52,8 @@ export class InstruccionComponent implements OnInit {
       }
     );
   }
-  getSeccion(): void {
-    this.usersService.seccion(1).subscribe((data) => {
+  getSeccion(seccionParam: number): void {
+    this.usersService.seccion(seccionParam).subscribe((data) => {
         this.seccion = data;
         console.log(this.seccion);
       },
@@ -43,8 +62,8 @@ export class InstruccionComponent implements OnInit {
       }
     );
   }
-  getPregunta(): void {
-    this.usersService.pregunta_sa(1).subscribe((data) => {
+  getPregunta(preguntaParam: number): void {
+    this.usersService.pregunta_sa(preguntaParam).subscribe((data) => {
         this.pregunta = data;
         console.log(this.pregunta);
       },
@@ -53,8 +72,8 @@ export class InstruccionComponent implements OnInit {
       }
     );
   }
-  getOpcion(): void {
-    this.usersService.opcion(1).subscribe((data) => {
+  getOpcion(opcionParam:number): void {
+    this.usersService.opcion(opcionParam).subscribe((data) => {
         this.opcion = data;
         console.log(this.opcion);
       },

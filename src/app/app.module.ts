@@ -34,6 +34,7 @@ import { MensajeTestComponent } from './components/mensaje-test/mensaje-test.com
 import { MenuStudentComponent } from './components/menu-student/menu-student.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatIconModule} from "@angular/material/icon";
     InformacionTestComponent,
     InformacionEncuestaComponent,
     MensajeTestComponent,
-    MenuStudentComponent
+    MenuStudentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

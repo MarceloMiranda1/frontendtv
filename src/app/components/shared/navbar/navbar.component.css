@@ -1,0 +1,47 @@
+table {
+  width: 80%;
+  margin: 0 auto;
+}
+a{
+  color: white;
+  font-family: Arial;
+}
+th {
+  background-color: #002244;
+  color: white;
+  font-family: Arial;
+}
+h1{
+  text-align: center;
+}
+.mat-paginator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+nav{
+  background-color: #002244;
+}
+.nav-link:hover {
+  color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
+}
+.button-position{
+  margin-left: 10%;
+  display: flex;
+  align-items: center;
+}
+.button-color{
+  background-color: #002244;
+  color: white;
+}
+.custom-input {
+  width: 250px; /* Ajusta el valor del ancho según lo necesites */
+  margin-right: 11%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+

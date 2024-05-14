@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Usuariodto} from "./dto/usuariodto";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, map, Observable, observable} from "rxjs";
 import {TutorDto} from "./dto/tutorDto";
 import {TestDto} from "./dto/testDto";
@@ -23,6 +23,7 @@ export class UsersService {
   private url2: string = "http://localhost:8000/accounts/"
   private currentUserSubject: BehaviorSubject<Usuariodto | null>;
 
+
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<Usuariodto | null>(null);
   }
@@ -31,20 +32,43 @@ export class UsersService {
     return this.currentUserSubject.value;
   }
 
-  loginUser(username: string, password: string): Observable<Usuariodto> {
-    const url = `${this.url2}login/`;
-    const body = {
-      username: username,
-      password: password
-    };
-    return this.http.post<Usuariodto>(url, body).pipe(
-      map(user => {
-        // Almacena el usuario en el servicio
-        this.currentUserSubject.next(user);
-        return user;
-      })
-    );
+  getToken(): string | null {
+    return localStorage.getItem('access');
   }
+  getSession(): Observable<any> {
+    let token = this.getToken();
+    // Comprueba si el token es null o undefined
+    if (!token) {
+      console.error('Token is null or undefined');
+    }
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.get(`${this.url2}session/`, { headers: headers });
+  }
+
+  loginUser(username: string, password: string): Observable<Usuariodto> {
+  const url = `${this.url2}login/` ;
+  const body = {
+    username: username,
+    password: password
+  };
+    console.log('exitoso1');
+
+    return this.http.post<Usuariodto>(url, body).pipe(
+    map(user => {
+      console.log(user);
+      console.log('exitoso2');
+      if (user.token.access && user.token.refresh){
+        localStorage.setItem('access', user.token.access);
+        localStorage.setItem('refresh', user.token.refresh);
+        console.log('exitoso');
+        this.getSession();
+      }
+      return user;
+    })
+  );
+}
 
   getGroup(user_id: number): Observable<UsuarioGrupoDto> {
   return this.http.get<UsuarioGrupoDto>(`${this.url}user_group/${user_id}`);
@@ -124,16 +148,23 @@ export class UsersService {
     return this.http.get<RespuestaSADto>(`${this.url}respuestaSA/${usuario_id}`);
   }
 
-  addRespuestaSA(opcion_id: number, user: {
-    opcion_id: number;
-    usuario_id: number;
-    id_test: number;
-    id_pregunta: number;
-    valor: number;
-    id_apartado: number
-  }): Observable<RespuestaSADto>{
-    return this.http.post<RespuestaSADto>(`${this.url}respuestaSa/${opcion_id}`,user);
+ addRespuestaSA(opcion_id: number, user: {
+  opcion_id: number;
+  usuario_id: number;
+  id_test: number;
+  id_pregunta: number;
+  valor: number;
+  id_apartado: number
+}): Observable<RespuestaSADto>{
+  let token = this.getToken();
+  if (!token) {
+    console.error('Token is null or undefined');
   }
+  let headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + token
+  });
+  return this.http.post<RespuestaSADto>(`${this.url}respuestaSa/${opcion_id}`, user, { headers: headers });
+}
   getRespuestaSAById(usuario_id:number):Observable<RespuestaSADto>{
     return this.http.get<RespuestaSADto>(`${this.url}viewSa/${usuario_id}`);
   }

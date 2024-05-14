@@ -14,6 +14,7 @@ import {LoginStudentsComponent} from "./components/login/login-students/login-st
 import {InformacionTestComponent} from "./components/informacion-test/informacion-test.component";
 import {InformacionEncuestaComponent} from "./components/informacion-test/informacion-encuesta/informacion-encuesta.component";
 import {MenuStudentComponent} from "./components/menu-student/menu-student.component";
+import {MensajeTestComponent} from "./components/mensaje-test/mensaje-test.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'encuesta/:usuario_id', component:EncuestaComponent},
   {path: 'login_students', component:LoginStudentsComponent},
   {path: 'menu-student', component:MenuStudentComponent},
+  {path: 'mensaje', component:MensajeTestComponent},
   {path: 'informacionTest/:usuario_id', component:InformacionTestComponent},
   {path: 'informacionEncuesta/:usuario_id', component:InformacionEncuestaComponent},
   {path: '', component:LoginComponent}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
-import {HttpUserEvent} from "@angular/common/http";
+import {HttpHeaders, HttpUserEvent} from "@angular/common/http";
 import {Usuariodto} from "../../dto/usuariodto";
 import {Router} from "@angular/router";
 
@@ -18,6 +18,7 @@ export class Test1Component implements OnInit {
   opciones_actual: any;
   respuesta = '';
   usuarioActual: Usuariodto | null;
+  session: any;
 
   constructor(private usersService: UsersService, private router: Router) {
     this.contadorArray = Array.from({length: 5}, (_, index) => index);
@@ -25,9 +26,22 @@ export class Test1Component implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getSession();
     this.getSeccion();
     this.getPregunta();
     this.getOpcion();
+  }
+
+  getSession(): void {
+    this.usersService.getSession().subscribe(
+      data => {
+        this.session = data;
+        console.log(this.session);
+      },
+      error => {
+        console.error('Error al obtener la session:', error);
+      }
+    );
   }
 
   getSeccion(): void {
@@ -70,7 +84,6 @@ export class Test1Component implements OnInit {
     console.log('Pregunta length:', this.pregunta.length);
     console.log(this.respuesta);
     const [opcionId, valor] = this.respuesta.split('-');
-
     this.pregunta_actual = this.pregunta[index];
     this.usersService.addRespuestaSA(parseInt(this.respuesta), {
       id_test: 1,
@@ -78,7 +91,7 @@ export class Test1Component implements OnInit {
       id_pregunta: this.pregunta_actual.id - 1,
       valor: valor === 'true' ? 1 : 0,
       opcion_id: parseInt(opcionId),
-      usuario_id: this.usuarioActual ? this.usuarioActual.id : 0
+      usuario_id: this.session.id
     }).subscribe((data) => {
       console.log(data);
       this.respuesta = '';
@@ -87,7 +100,7 @@ export class Test1Component implements OnInit {
     });
     if(index === this.pregunta.length - 1){
       // Si es la última pregunta, navega a la nueva página
-      this.router.navigate(['/']);
+      this.router.navigate(['/mensaje']);
     } else {
 
       // Si no es la última pregunta, carga la siguiente pregunta
