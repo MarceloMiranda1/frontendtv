@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableExporterDirective} from "mat-table-exporter";
@@ -18,7 +18,7 @@ import {EncuestaComponent} from "../../form-student/encuesta/encuesta.component"
   templateUrl: './informacion-encuesta.component.html',
   styleUrls: ['./informacion-encuesta.component.css']
 })
-export class InformacionEncuestaComponent implements OnInit {
+export class InformacionEncuestaComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,6 +35,9 @@ export class InformacionEncuestaComponent implements OnInit {
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
 
   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit(): void {
     this.id_usuario = this.route.snapshot.params['usuario_id']
     this.usersService.getUserById(this.id_usuario).subscribe(data => {
@@ -49,23 +52,22 @@ export class InformacionEncuestaComponent implements OnInit {
     this.usersService.getEncuesta(this.id_usuario).subscribe(data => {
       this.encuesta = data;
       console.log(data)
-      this.dataSource = new MatTableDataSource<EncuestaDto>(this.encuesta);
+
+      //const preguntas = ['¿Qué profesión quisieras estudiar y por qué?', '¿Si no tienes decidida tu elección explica por qué?', '¿Qué tipo de tareas te gustaría realizar en el campo laboral?', '¿Por qué?', '¿Tus papás están de acuerdo con tu elección?', '¿Qué piensan tus papás en relación a tu elección?', '¿Buscaste información acerca de la o las carreras de tu interés?'];
+      const preguntas = ['pregunta1', 'pregunta2', 'pregunta3', 'pregunta4', 'pregunta5', 'pregunta6', 'pregunta7'];
+
+      const encuestasMapeadas = this.encuesta.map((e: EncuestaDto) => {
+        return preguntas.map(pregunta => ({
+          pregunta: pregunta,
+          respuesta: e[pregunta]
+        }));
+      });
+
+      this.DATA = [].concat(...encuestasMapeadas);
+
+      this.dataSource = new MatTableDataSource<EncuestaDto>(this.DATA);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
-      // Aquí es donde llenamos DATA después de que encuesta esté definida
-      this.DATA = this.encuesta.map((e: EncuestaDto) => {
-        return {
-          // Aquí debes reemplazar 'propiedad' con las propiedades reales de EncuestaDto
-          pregunta1: e.pregunta1,
-          pregunta2: e.pregunta2,
-          pregunta3: e.pregunta3,
-          pregunta4: e.pregunta4,
-          pregunta5: e.pregunta5,
-          pregunta6: e.pregunta6,
-          pregunta7: e.pregunta7,
-        }
-      });
     });
   }
   DATA: EncuestaDto[] = [];

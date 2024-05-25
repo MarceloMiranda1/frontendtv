@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light mb-5">
   <div class="container-fluid">
     <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo" style="width: 50px; margin-right: 20px;">
     <div class="centered-content">
       <h1>Bienvenido al menu de estudiantes</h1>
     </div>
-    <a class="nav-link logout-link" routerLink="/login_students">
+    <a class="nav-link logout-link" (click)="logout()">
       <mat-icon color="white">logout</mat-icon>
     </a>
   </div>
 </nav>
-<p>{{mensaje}}</p>
-<div class="center-container">
+<div class="container">
+  <p>{{mensaje}}</p>
   <div class="button-container">
     <button mat-button [matMenuTriggerFor]="menu">Prueba DAT</button>
     <mat-menu #menu="matMenu">
@@ -23,7 +23,7 @@
       <button mat-menu-item>Prueba Rapidez y Exactitud</button>
     </mat-menu>
 
-    <button mat-button>Prueba IPP</button>
+    <button mat-button routerLink="/instrucciones_ipp">Prueba IPP</button>
     <button mat-button>Prueba HSPQ</button>
   </div>
 </div>

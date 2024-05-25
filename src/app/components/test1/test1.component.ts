@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
 import {HttpHeaders, HttpUserEvent} from "@angular/common/http";
 import {Usuariodto} from "../../dto/usuariodto";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-test1',
@@ -19,17 +19,28 @@ export class Test1Component implements OnInit {
   respuesta = '';
   usuarioActual: Usuariodto | null;
   session: any;
+  seccionParam: any;
+  preguntaParam: any;
+  opcionParam: any;
 
-  constructor(private usersService: UsersService, private router: Router) {
+  preguntaIndex = 1;
+
+  constructor(private usersService: UsersService,private route: ActivatedRoute, private router: Router) {
     this.contadorArray = Array.from({length: 5}, (_, index) => index);
     this.usuarioActual = this.usersService.currentUserValue;
   }
 
   ngOnInit(): void {
-    this.getSession();
-    this.getSeccion();
-    this.getPregunta();
-    this.getOpcion();
+    this.route.queryParams.subscribe(params => {
+      this.seccionParam = params['seccion'];
+      this.preguntaParam = params['pregunta'];
+      this.opcionParam = params['opcion'];
+
+      this.getSession();
+      this.getSeccion();
+      this.getPreguntaPorSeccion(this.preguntaParam);
+      this.getOpcion();
+    });
   }
 
   getSession(): void {
@@ -45,7 +56,7 @@ export class Test1Component implements OnInit {
   }
 
   getSeccion(): void {
-    this.usersService.seccion(1).subscribe((data) => {
+    this.usersService.seccion(this.seccionParam).subscribe((data) => {
         this.seccion = data;
         console.log(this.seccion);
       },
@@ -55,10 +66,10 @@ export class Test1Component implements OnInit {
     );
   }
 
-  getPregunta(): void {
-    this.usersService.pregunta_sa(1).subscribe((data) => {
+  getPreguntaPorSeccion(seccion_id:number): void {
+    this.usersService.pregunta_sa(seccion_id).subscribe((data) => {
         this.pregunta = data;
-        this.pregunta_actual = this.pregunta[1];
+        this.pregunta_actual = this.pregunta[this.preguntaIndex];
         console.log(this.pregunta);
       },
       (error) => {
@@ -68,7 +79,7 @@ export class Test1Component implements OnInit {
   }
 
   getOpcion(): void {
-    this.usersService.opcion(2).subscribe((data) => {
+    this.usersService.opcion(this.opcionParam).subscribe((data) => {
         this.opcion = data;
         this.opciones_actual = data;
         console.log(this.opcion);
@@ -84,31 +95,30 @@ export class Test1Component implements OnInit {
     console.log('Pregunta length:', this.pregunta.length);
     console.log(this.respuesta);
     const [opcionId, valor] = this.respuesta.split('-');
-    this.pregunta_actual = this.pregunta[index];
     this.usersService.addRespuestaSA(parseInt(this.respuesta), {
       id_test: 1,
-      id_apartado: 1,
-      id_pregunta: this.pregunta_actual.id - 1,
+      id_apartado: this.preguntaParam,
+      id_pregunta: this.pregunta_actual.id,
       valor: valor === 'true' ? 1 : 0,
       opcion_id: parseInt(opcionId),
       usuario_id: this.session.id
     }).subscribe((data) => {
       console.log(data);
       this.respuesta = '';
+      this.preguntaIndex++;
+      if(this.preguntaIndex === this.pregunta.length){
+        this.router.navigate(['/mensaje']);
+      } else {
+        this.pregunta_actual = this.pregunta[this.preguntaIndex];
+        this.usersService.opcion(this.pregunta_actual.id).subscribe((data) => {
+          this.opciones_actual = data;
+        }, (error) => {
+          console.error('Error al obtener las opciones:', error);
+        });
+      }
     }, (error) => {
       console.error('Error al almacenar la respuesta:', error);
     });
-    if(index === this.pregunta.length - 1){
-      // Si es la última pregunta, navega a la nueva página
-      this.router.navigate(['/mensaje']);
-    } else {
-
-      // Si no es la última pregunta, carga la siguiente pregunta
-      this.usersService.opcion(index + 1).subscribe((data) => {
-        this.opciones_actual = data;
-      }, (error) => {
-        console.error('Error al obtener las opciones:', error);
-      });
-    }
   }
-}
+
+  }

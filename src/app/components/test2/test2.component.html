@@ -1,0 +1,20 @@
+<h1><img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo">{{ test[0].nombre }}</h1>
+<div class="container">
+  <div class="pregunta">
+    <div class="mb-2">
+      <form>
+        <label class="form-label">{{pregunta_actual.nro_pregunta}}.- {{pregunta_actual.texto_pregunta}}</label>
+        <div class="form-check" *ngFor="let x of contadorArray " >
+          <label class="form-check-label" style="float: left;">
+            <input class="form-check-input" type="radio" name="flexRadioDefault"  [(ngModel)]="respuesta" [value]="opcion[x].id + '-' + opcion[x].valor">
+          </label>
+          <label class="form-check-label" >
+            {{opcion[x].respuesta}}
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="siguiente(this.pregunta_actual.id)">Siguiente</button>
+      </form>
+    </div>
+  </div>
+</div>

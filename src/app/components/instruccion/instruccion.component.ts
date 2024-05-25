@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-instruccion',
@@ -14,21 +14,25 @@ export class InstruccionComponent implements OnInit {
   seccion: any;
   pregunta: any;
   opcion: any;
-  constructor(private usersService: UsersService, private route: ActivatedRoute) {
+  testParam: any = "";
+  seccionParam: any = "";
+  preguntaParam: any = "";
+  opcionParam: any = "";
+  constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
     this.contadorArray = Array.from({length: 5}, (_, index) => index);
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const testParam = params['test'];
-      const seccionParam = params['seccion'];
-      const preguntaParam = params['pregunta'];
-      const opcionParam = params['opcion'];
+      this.testParam = params['test'];
+      this.seccionParam = params['seccion'];
+      this.preguntaParam = params['pregunta'];
+      this.opcionParam = params['opcion'];
 
-      this.getTest(testParam);
-      this.getSeccion(seccionParam);
-      this.getPregunta(preguntaParam);
-      this.getOpcion(opcionParam);
+      this.getTest(this.testParam);
+      this.getSeccion(this.seccionParam);
+      this.getPregunta(this.preguntaParam);
+      this.getOpcion(this.opcionParam);
     });
   }
   getSession(): void {
@@ -65,6 +69,7 @@ export class InstruccionComponent implements OnInit {
   getPregunta(preguntaParam: number): void {
     this.usersService.pregunta_sa(preguntaParam).subscribe((data) => {
         this.pregunta = data;
+
         console.log(this.pregunta);
       },
       (error) => {
@@ -81,6 +86,9 @@ export class InstruccionComponent implements OnInit {
         console.error('Error al obtener la seccion:', error);
       }
     );
+  }
+  startTest(){
+    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionParam } });
   }
 
 

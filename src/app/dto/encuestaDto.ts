@@ -1,4 +1,5 @@
 export interface EncuestaDto{
+  [key: string]: any;
   id: number| null;
   pregunta1: string;
   pregunta2: string;
@@ -9,3 +10,5 @@ export interface EncuestaDto{
   pregunta7: string;
   usuario_id: number;
 }
+
+

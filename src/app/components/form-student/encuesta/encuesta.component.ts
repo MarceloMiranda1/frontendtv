@@ -56,9 +56,8 @@ export class EncuestaComponent implements OnInit {
         pregunta7: pregunta7control.value,
         usuario_id: this.id
       };
-
       this.userService.addEncuesta(this.id, encuestaDto).subscribe(data => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login_students']);
       });
     }
   }

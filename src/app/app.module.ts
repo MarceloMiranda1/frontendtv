@@ -35,6 +35,11 @@ import { MenuStudentComponent } from './components/menu-student/menu-student.com
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { GraficaTestComponent } from './components/grafica-test/grafica-test.component';
+import { InstruccionIppComponent } from './components/instruccion/instruccion-ipp/instruccion-ipp.component';
+import { Test2Component } from './components/test2/test2.component';
+import { InformacionIppComponent } from './components/informacion-test/informacion-ipp/informacion-ipp.component';
+import { GraficaIppComponent } from './components/grafica-ipp/grafica-ipp.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +60,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     InformacionEncuestaComponent,
     MensajeTestComponent,
     MenuStudentComponent,
-    NavbarComponent
+    NavbarComponent,
+    GraficaTestComponent,
+    InstruccionIppComponent,
+    Test2Component,
+    InformacionIppComponent,
+    GraficaIppComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +87,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     MatMenuModule,
     MatIconModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

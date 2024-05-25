@@ -17,6 +17,10 @@ export class MenuStudentComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  logout(): void {
+    this.usersService.logOut();
+    this.router.navigate(['/login_students']);
+  }
   onButtonClick(): void {
     this.test = 1;
     this.seccion = 1;
@@ -28,8 +32,9 @@ export class MenuStudentComponent implements OnInit {
     this.test = 1;
     this.seccion = 1;
     this.pregunta = 2;
-    this.opcion = 1;
+    this.opcion = 12;
     this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion } });
   }
+
 
 }

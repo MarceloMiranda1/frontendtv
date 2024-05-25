@@ -1,0 +1,4 @@
+.apexcharts-menu-item.exportCSV,
+.apexcharts-menu-item.exportSVG {
+  display: none;
+}

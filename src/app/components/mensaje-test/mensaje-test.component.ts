@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MensajeTestComponent implements OnInit {
 
-  mensaje: string = "El test a finalizado, aprete el siguiente boton para volver al menu principal.";
+  mensaje: string = "Haz finalizado esta prueba, apreta el boton para volver al menu principal.";
 
   constructor() { }
 

@@ -12,6 +12,9 @@ import {OpcionsaDto} from "./dto/opcionsaDto";
 import {EncuestaDto} from "./dto/encuestaDto";
 import {UsuarioGrupoDto} from "./dto/usuarioGrupoDto";
 import {RespuestaSADto} from "./dto/respuestaSADto";
+import {PreguntaippDto} from "./dto/preguntaippDto";
+import {RespuestaIppDto} from "./dto/respuestaIppDto";
+import {OpcionIppDto} from "./dto/opcionIppDto";
 
 
 @Injectable({
@@ -37,6 +40,7 @@ export class UsersService {
   }
   getSession(): Observable<any> {
     let token = this.getToken();
+    console.log('entre')
     // Comprueba si el token es null o undefined
     if (!token) {
       console.error('Token is null or undefined');
@@ -112,12 +116,12 @@ export class UsersService {
   deleteUser(idUsuario:number): Observable<Usuariodto>{
     return this.http.delete<Usuariodto>(`${this.url}user/${idUsuario}`);
   }
-  // log out por el momento deshabilitado
-  /*logOut():Observable<any>{
-    return this.http.post<any>(`${this.url2}logout/`);
+  logOut(): void {
+    // Elimina el token del almacenamiento local
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    // Aquí puedes redirigir al usuario a la página de inicio de sesión o realizar otras tareas de limpieza
   }
-  */
-  // test services
 
   testGet():Observable<any> {
     return this.http.get<any>(`${this.url}test/`);
@@ -134,8 +138,8 @@ export class UsersService {
   preguntasaGet():Observable<any>{
     return this.http.get<any>(`${this.url}preguntasa/`);
   }
-  pregunta_sa(seccion_id:number):Observable<PreguntasaDto>{
-    return this.http.get<PreguntasaDto>(`${this.url}test/seccion/pregunta/${seccion_id}`);
+  pregunta_sa(seccion_id:number):Observable<PreguntasaDto[]>{
+  return this.http.get<PreguntasaDto[]>(`${this.url}test/seccion/pregunta/${seccion_id}`);
   }
   opcionsaGet():Observable<any>{
     return this.http.get<any>(`${this.url}opcionsa/`);
@@ -168,4 +172,44 @@ export class UsersService {
   getRespuestaSAById(usuario_id:number):Observable<RespuestaSADto>{
     return this.http.get<RespuestaSADto>(`${this.url}viewSa/${usuario_id}`);
   }
+  getRespuestaSAByIdSeccion(usuario_id:number, id_apartado:number):Observable<RespuestaSADto>{
+    return this.http.get<RespuestaSADto>(`${this.url}list_answers/${usuario_id}/${id_apartado}`);
+  }
+
+  getPercentil(usuario_id:number, id_apartado:number):Observable<RespuestaSADto>{
+    return this.http.get<RespuestaSADto>(`${this.url}test_results/${usuario_id}/${id_apartado}`);
+  }
+
+  preguntaIppGet(test_id:number):Observable<PreguntaippDto[]>{
+    return this.http.get<PreguntaippDto[]>(`${this.url}test/preguntaIpp/${test_id}`);
+  }
+  opcionIpp():Observable<any>{
+    return this.http.get<any>(`${this.url}opcionIpp/`);
+  }
+  addRespuestaIpp(opcion_id: number, pregunta_id: number, user: {
+    id_test: number;
+    valor: number;
+    categoria: string;
+    seccion: number;
+    usuario_id: number;
+    pregunta_id: number;
+    opcion_id: number;
+  }): Observable<RespuestaIppDto>{
+    let token = this.getToken();
+    if (!token) {
+      console.error('Token is null or undefined');
+    }
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.post<RespuestaIppDto>(`${this.url}respuestaIpp/${pregunta_id}/${opcion_id}`, user, { headers: headers });
+  }
+  getRespuestaIpp(usuario_id:number):Observable<RespuestaIppDto>{
+    return this.http.get<RespuestaIppDto>(`${this.url}viewIpp/${usuario_id}`);
+  }
+  getSumaPercentilIpp(usuario_id:number):Observable<RespuestaIppDto>{
+    return this.http.get<RespuestaIppDto>(`${this.url}user/${usuario_id}/section_sum/`);
+  }
+
+
 }

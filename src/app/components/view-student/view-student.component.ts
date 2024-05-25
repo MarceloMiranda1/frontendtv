@@ -19,7 +19,7 @@ export class ViewStudentComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: MatTableDataSource<Usuariodto> = new MatTableDataSource<Usuariodto>([]);
-  displayedColumns: string[] = ['ID', 'nombre', 'apellido', 'ci', 'edad', 'sexo', 'correo', 'tipo', 'acciones'];
+  displayedColumns: string[] = ['ID', 'nombre', 'apellido', 'ci', 'edad', 'sexo', 'correo', 'acciones'];
 
   users: any|undefined
   tutor: any|undefined
@@ -35,8 +35,8 @@ export class ViewStudentComponent implements OnInit {
   loadUsers(): void {
     this.usersService.getUser().subscribe(data => {
       this.users = data;
-      //this.users = data.filter(user => this.getTipoUsuarioName(user.id) === 'Estudiante');
-      this.dataSource = new MatTableDataSource<Usuariodto>(this.users);
+      const filteredUsers = this.users.filter((user: Usuariodto) => user.groups.includes(2));
+      this.dataSource = new MatTableDataSource<Usuariodto>(filteredUsers);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

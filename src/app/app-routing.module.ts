@@ -15,6 +15,9 @@ import {InformacionTestComponent} from "./components/informacion-test/informacio
 import {InformacionEncuestaComponent} from "./components/informacion-test/informacion-encuesta/informacion-encuesta.component";
 import {MenuStudentComponent} from "./components/menu-student/menu-student.component";
 import {MensajeTestComponent} from "./components/mensaje-test/mensaje-test.component";
+import {InstruccionIppComponent} from "./components/instruccion/instruccion-ipp/instruccion-ipp.component";
+import {Test2Component} from "./components/test2/test2.component";
+import {InformacionIppComponent} from "./components/informacion-test/informacion-ipp/informacion-ipp.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -23,14 +26,17 @@ const routes: Routes = [
   {path: 'usuarios/estudiantes', component:ViewStudentComponent},
   {path: 'usuario/:idUsuario', component:AddTutorComponent},
   {path: 'instrucciones', component: InstruccionComponent},
+  {path: 'instrucciones_ipp', component: InstruccionIppComponent},
   {path: 'pregunta', component: Test1Component},
+  {path: 'preguntaIpp', component: Test2Component},
   {path: 'form_student', component: FormStudentComponent},
   {path: 'encuesta/:usuario_id', component:EncuestaComponent},
   {path: 'login_students', component:LoginStudentsComponent},
   {path: 'menu-student', component:MenuStudentComponent},
   {path: 'mensaje', component:MensajeTestComponent},
-  {path: 'informacionTest/:usuario_id', component:InformacionTestComponent},
+  {path: 'informacionTest/:usuario_id/:seccion_id', component:InformacionTestComponent},
   {path: 'informacionEncuesta/:usuario_id', component:InformacionEncuestaComponent},
+  {path: 'informacionIpp/:usuario_id', component:InformacionIppComponent},
   {path: '', component:LoginComponent}
 ];
 

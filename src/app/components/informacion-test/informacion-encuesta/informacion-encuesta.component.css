@@ -36,7 +36,12 @@ nav{
   display: flex;
   align-items: center;
 }
-
+.small-cell {
+  width: 10px; /* Ajusta este valor según tus necesidades */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 
 

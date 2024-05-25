@@ -11,9 +11,9 @@ export interface Usuariodto{
   celular: string;
   grado_escolar: string;
   token: Token;
+  groups: number[];
 }
 interface Token{
   refresh: string;
   access: string;
-
 }

@@ -6,28 +6,35 @@
       <h1 class="text-center mb-3">Test de {{users.first_name}} {{users.last_name}}</h1>
       <div class="button-position d-flex align-items-center">
         <button class="btn btn-success mb-3 me-3" (click)="exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Encuesta'})">Exportar</button>
-        <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">DAT</button>
-        <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">IPP</button>
-        <button class="btn btn-primary mb-3 me-3" routerLink="/informacionTest/{{users.id}}">HSPQ</button>
-        <button class="btn btn-primary mb-3 me-3" routerLink="/informacionEncuesta/{{users.id}}">Encuesta</button>
-
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/1">Razonamiento Verbal</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/2">Razonamiento Numérico</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/3">Razonamiento Abstracto</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/4">Razonamiento Mecánico</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/5">Razonamiento Espacial</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/6">Ortografía</button>
+          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/7">Rapidez y Exactitud</button>
+        </mat-menu>
+        <!-- Botón vinculado al menú -->
+        <button class="mb-3 me-3" mat-flat-button color="primary" [matMenuTriggerFor]="appMenu">DAT</button>
+        <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionIpp/{{users.id}}">IPP</button>
+        <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionTest/{{users.id}}">HSPQ</button>
+        <button class="mb-3 me-3" mat-flat-button color="primary"  routerLink="/informacionEncuesta/{{users.id}}">Encuesta</button>
         <button class="btn btn-danger mb-3 me-3" routerLink="/usuarios/estudiantes">Volver</button>
+
         <div class="flex-grow-1"></div>
         <input class="form-control mb-3 custom-input" type="search" placeholder="Buscador" aria-label="Search">
       </div>
 
       <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z15" #exporter="matTableExporter">
-        <!-- Columna ID -->
-        <ng-container matColumnDef="Pregunta">
-          <th mat-header-cell *matHeaderCellDef style="width: 30%;">Test</th>
-          <td mat-cell *matCellDef="let encuesta">{{encuesta.pregunta1}}</td>
-
+        <ng-container matColumnDef="Pregunta" >
+          <th mat-header-cell *matHeaderCellDef style="width: 30%;">Pregunta</th>
+          <td mat-cell *matCellDef="let row">{{row.pregunta}}</td>
         </ng-container>
 
         <ng-container matColumnDef="Respuesta">
           <th mat-header-cell *matHeaderCellDef>Respuesta</th>
-          <td mat-cell *matCellDef="let row">{{row.pregunta1}}</td>
-
+          <td mat-cell *matCellDef="let row">{{row.respuesta}}</td>
         </ng-container>
 
         <!-- Encabezado de la tabla -->

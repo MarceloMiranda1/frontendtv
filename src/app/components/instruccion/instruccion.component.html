@@ -1,13 +1,13 @@
 
 <h1><img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo">{{ test[0].nombre }} Sección {{seccion[0].nombre}}</h1>
   <div class="container">
-  <p>{{ seccion[1].instruccion }}</p>
+  <p>{{ seccion[0].instruccion }}</p>
   <div class="pregunta">
     <div class="mb-2">
     <form>
       <label class="form-label">{{pregunta[0].nro_pregunta}}  {{pregunta[0].texto_pregunta}}</label>
       <label class="form-label">{{pregunta[0].imagen}}</label>
-
+      <img [src]="pregunta[0].imagen" alt="Imagen de la pregunta">
       <div class="form-check" *ngFor="let i of contadorArray">
           <label class="form-check-label" style="float: left;">
             <input class="form-check-input" type="radio" name="flexRadioDefault" >
@@ -22,5 +22,5 @@
     </form>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="getSession()" routerLink="/pregunta">Iniciar</button>
+  <button type="submit" class="btn btn-primary" (click)="startTest()">Iniciar</button>
   </div>

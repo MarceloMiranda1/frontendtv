@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <h1 class="text-center mb-3">Test de {{users.first_name}} {{users.last_name}}</h1>
       <div class="button-position d-flex align-items-center">
-        <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe'})">Exportar</button>
+        <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe_Ipp'})">Exportar</button>
         <mat-menu #appMenu="matMenu">
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/1">Razonamiento Verbal</button>
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/2">Razonamiento Numérico</button>
@@ -27,24 +27,17 @@
       </div>
 
       <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z15 mb-3" #exporter="matTableExporter">
-        <!-- Columna ID -->
-        <ng-container matColumnDef="Test">
-          <th mat-header-cell *matHeaderCellDef style="width: 30%;">Test</th>
-          <td mat-cell *matCellDef="let respuesta">{{getTestName(respuesta.id_test)}}</td>
-        </ng-container>
 
-        <ng-container matColumnDef="Apartado">
-          <th mat-header-cell *matHeaderCellDef>Sección</th>
-          <td mat-cell *matCellDef="let respuesta">{{getSeccionName(respuesta.id_apartado) }}</td>
-        </ng-container>
-
-        <!-- Columna Apellido -->
         <ng-container matColumnDef="Pregunta">
-          <th mat-header-cell *matHeaderCellDef>Pregunta</th>
-          <td mat-cell *matCellDef="let respuesta">{{ getPreguntaName(respuesta.id_pregunta) }}</td>
+          <th mat-header-cell *matHeaderCellDef style="width: 70%;">Pregunta</th>
+          <td mat-cell *matCellDef="let respuesta">{{ getPreguntaName(respuesta.pregunta_id) }}</td>
         </ng-container>
 
-        <!-- Columna CI -->
+        <ng-container matColumnDef="Categoria">
+          <th mat-header-cell *matHeaderCellDef>Categoria</th>
+          <td mat-cell *matCellDef="let respuesta">{{ respuesta.categoria}}</td>
+        </ng-container>
+
         <ng-container matColumnDef="Opcion">
           <th mat-header-cell *matHeaderCellDef>Opcion</th>
           <td mat-cell *matCellDef="let respuesta">{{ getOpcionName(respuesta.opcion_id) }}</td>
@@ -57,17 +50,14 @@
         </ng-container>
 
 
-        <!-- Encabezado de la tabla -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <!-- Celdas de la tabla -->
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
       <div class="button-position d-flex align-items-center">
         <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialog()">Mostrar Gráfica</button>
         <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialogWithoutNumbers()">Mostrar Gráfica sin Números</button>
-        <button mat-button [disabled]="true" class="disabled-button"> Puntaje: {{ totalValue }}</button>
-        <button mat-button [disabled]="true" class="disabled-button"> Percentil: {{percentil.correct_answers}}</button>
+
       </div>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" (page)="onPageChange($event)"

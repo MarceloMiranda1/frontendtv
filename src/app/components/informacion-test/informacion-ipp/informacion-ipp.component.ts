@@ -1,45 +1,46 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
-import {Usuariodto} from "../../dto/usuariodto";
-import {TipoUsuarioDto} from "../../dto/tipoUsuarioDto";
-import {UsersService} from "../../users.service";
-import {RespuestaSADto} from "../../dto/respuestaSADto";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TestDto} from "../../dto/testDto";
-import {SeccionDto} from "../../dto/seccionDto";
-import {PreguntasaDto} from "../../dto/preguntasaDto";
-import {OpcionsaDto} from "../../dto/opcionsaDto";
 import {MatTableExporterDirective} from "mat-table-exporter";
-import {MatDialog} from "@angular/material/dialog";
-import {GraficaTestComponent} from "../grafica-test/grafica-test.component";
 import {Subscription} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
+import {RespuestaSADto} from "../../../dto/respuestaSADto";
+import {TestDto} from "../../../dto/testDto";
+import {SeccionDto} from "../../../dto/seccionDto";
+import {PreguntasaDto} from "../../../dto/preguntasaDto";
+import {OpcionsaDto} from "../../../dto/opcionsaDto";
+import {UsersService} from "../../../users.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {GraficaTestComponent} from "../../grafica-test/grafica-test.component";
+import {RespuestaIppDto} from "../../../dto/respuestaIppDto";
+import {PreguntaippDto} from "../../../dto/preguntaippDto";
+import {OpcionIppDto} from "../../../dto/opcionIppDto";
+import {GraficaIppComponent} from "../../grafica-ipp/grafica-ipp.component";
 
 @Component({
-  selector: 'app-informacion-test',
-  templateUrl: './informacion-test.component.html',
-  styleUrls: ['./informacion-test.component.css']
+  selector: 'app-informacion-ipp',
+  templateUrl: './informacion-ipp.component.html',
+  styleUrls: ['./informacion-ipp.component.css']
 })
-export class InformacionTestComponent implements OnInit, AfterViewInit {
+export class InformacionIppComponent implements OnInit, AfterViewInit {
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTableExporterDirective) exporter: MatTableExporterDirective | undefined;
   routerSubscription: Subscription | null = null;
 
-  dataSource: MatTableDataSource<RespuestaSADto> = new MatTableDataSource<RespuestaSADto>([]);
-  displayedColumns: string[] = ['Test', 'Apartado', 'Pregunta', 'Opcion', 'Valor'];
+  dataSource: MatTableDataSource<RespuestaIppDto> = new MatTableDataSource<RespuestaIppDto>([]);
+  displayedColumns: string[] = ['Pregunta', 'Categoria', 'Opcion', 'Valor'];
 
   users: any;
   percentil: any;
   respuestas: any;
   test: TestDto[] = [];
-  apartado: SeccionDto[] = [];
-  pregunta: PreguntasaDto[] = [];
-  opcion: OpcionsaDto[] = [];
+  pregunta: PreguntaippDto[] = [];
+  opcion: OpcionIppDto[] = [];
   id_usuario: any;
-  id_seccion: any;
-  totalValue: number = 0;
+
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
 
@@ -51,10 +52,9 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.routerSubscription = this.route.params.subscribe(() => {
       this.id_usuario = this.route.snapshot.params['usuario_id'];
-      this.id_seccion = this.route.snapshot.params['seccion_id'];
       this.loadData();
     });
-    const fileName = `${this.users.first_name}_${this.users.last_name}_Informe`;
+    const fileName = `${this.users.first_name}_${this.users.last_name}_Informe_Ipp`;
     this.exporter?.exportTable('xlsx', {fileName});
   }
   loadData(): void {
@@ -64,20 +64,18 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     });
     this.loadRespuestas()
     this.loadTest();
-    this.loadApartado();
     this.loadPregunta();
     this.loadOpcion();
     this.getPercentil();
   }
 
   loadRespuestas(): void {
-    this.usersService.getRespuestaSAByIdSeccion(this.id_usuario,this.id_seccion).subscribe(data => {
+    this.usersService.getRespuestaIpp(this.id_usuario).subscribe(data => {
       this.respuestas = data;
       console.log(data)
-      this.dataSource = new MatTableDataSource<RespuestaSADto>(this.respuestas);
+      this.dataSource = new MatTableDataSource<RespuestaIppDto>(this.respuestas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.calculateTotalValue();
 
     });
   }
@@ -87,24 +85,12 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
       console.log(data)
     });
   }
-
   getTestName(id_test: number): string {
     const test = this.test.find(test => test.id === id_test);
     return test ? test.nombre : '';
   }
-
-  loadApartado(): void {
-    this.usersService.seccionGet().subscribe(data => {
-      this.apartado = data;
-      console.log(data)
-    });
-  }
-  getSeccionName(id_seccion: number): string {
-    const seccion = this.apartado.find(seccion => seccion.id === id_seccion);
-    return seccion ? seccion.nombre : '';
-  }
   loadPregunta(): void {
-    this.usersService.preguntasaGet().subscribe(data => {
+    this.usersService.preguntaIppGet(2).subscribe(data => {
       this.pregunta = data
       console.log(data)
     });
@@ -114,7 +100,7 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     return pregunta ? pregunta.texto_pregunta : '';
   }
   loadOpcion(): void {
-    this.usersService.opcionsaGet().subscribe(data => {
+    this.usersService.opcionIpp().subscribe(data => {
       this.opcion = data
       console.log(data)
     });
@@ -124,29 +110,22 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     return opcion ? opcion.inciso : '';
   }
 
-  calculateTotalValue() {
-    this.totalValue = 0;
-    this.dataSource.data.forEach(respuesta => {
-      this.totalValue += respuesta.valor;
-    });
-  }
   getPercentil(): void {
-    this.usersService.getPercentil(this.id_usuario, 1).subscribe(data => {
+    this.usersService.getSumaPercentilIpp(this.id_usuario).subscribe(data => {
       this.percentil = data;
       console.log(data);
     });
   }
 
   openChartDialog(): void {
-    this.dialog.open(GraficaTestComponent,{
-      width: '900px',
-      height: '420px',
-      data: {
-        total: this.percentil.correct_answers,
-        showNumbers: true
-      }
-    });
-  }
+  this.dialog.open(GraficaIppComponent, {
+    width: '100%',
+    height: '570px',
+    data: {
+      percentil: this.percentil
+    }
+  });
+}
   openChartDialogWithoutNumbers(): void {
     this.dialog.open(GraficaTestComponent,{
       width: '900px',
@@ -160,5 +139,6 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
   onPageChange(event: any): void {
     this.loadRespuestas();
   }
+
 
 }
