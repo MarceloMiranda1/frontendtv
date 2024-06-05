@@ -15,6 +15,9 @@ import {RespuestaSADto} from "./dto/respuestaSADto";
 import {PreguntaippDto} from "./dto/preguntaippDto";
 import {RespuestaIppDto} from "./dto/respuestaIppDto";
 import {OpcionIppDto} from "./dto/opcionIppDto";
+import {PreguntahspqDto} from "./dto/preguntahspqDto";
+import {OpcionHspqDto} from "./dto/opcionHspqDto";
+import {RespuestaHspqDto} from "./dto/respuestaHspqDto";
 
 
 @Injectable({
@@ -209,6 +212,42 @@ export class UsersService {
   }
   getSumaPercentilIpp(usuario_id:number):Observable<RespuestaIppDto>{
     return this.http.get<RespuestaIppDto>(`${this.url}user/${usuario_id}/section_sum/`);
+  }
+  // HSPQ
+  getPreguntaHspq():Observable<any>{
+    return this.http.get<any>(`${this.url}test/preguntaHspq/`);
+  }
+  getPreguntaHspqById(test_id:number):Observable<PreguntahspqDto[]>{
+    return this.http.get<PreguntahspqDto[]>(`${this.url}test/preguntaHspq/${test_id}`);
+  }
+  getOptionHspqById(pregunta_id:number):Observable<OpcionHspqDto>{
+    return this.http.get<OpcionHspqDto>(`${this.url}opcionHspq/${pregunta_id}`);
+  }
+  getOpcionHspq():Observable<any>{
+    return this.http.get<any>(`${this.url}opcionHspq/`);
+  }
+  addRespuestaHspq(opcion_id:number, user:{
+    id_test: number;
+    id_pregunta: number;
+    valor: number;
+    seccion: string;
+    usuario_id: number;
+    opcion_id: number;
+  }): Observable<RespuestaIppDto>{
+    let token = this.getToken();
+    if (!token) {
+      console.error('Token is null or undefined');
+    }
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+    return this.http.post<RespuestaIppDto>(`${this.url}respuestaHspq/${opcion_id}`, user, { headers: headers });
+  }
+  getRespuestaHspq(usuario_id:number):Observable<RespuestaIppDto>{
+    return this.http.get<RespuestaIppDto>(`${this.url}viewHspq/${usuario_id}`);
+  }
+  getDecatipo(usuario_id:number):Observable<RespuestaHspqDto>{
+    return this.http.get<RespuestaHspqDto>(`${this.url}user/${usuario_id}/section_sumHspq/`);
   }
 
 

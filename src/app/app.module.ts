@@ -40,6 +40,10 @@ import { InstruccionIppComponent } from './components/instruccion/instruccion-ip
 import { Test2Component } from './components/test2/test2.component';
 import { InformacionIppComponent } from './components/informacion-test/informacion-ipp/informacion-ipp.component';
 import { GraficaIppComponent } from './components/grafica-ipp/grafica-ipp.component';
+import { InformacionHspqComponent } from './components/informacion-test/informacion-hspq/informacion-hspq.component';
+import { InstruccionHspqComponent } from './components/instruccion/instruccion-hspq/instruccion-hspq.component';
+import { Test3Component } from './components/test3/test3.component';
+import { GraficaHspqComponent } from './components/grafica-hspq/grafica-hspq.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,11 @@ import { GraficaIppComponent } from './components/grafica-ipp/grafica-ipp.compon
     InstruccionIppComponent,
     Test2Component,
     InformacionIppComponent,
-    GraficaIppComponent
+    GraficaIppComponent,
+    InformacionHspqComponent,
+    InstruccionHspqComponent,
+    Test3Component,
+    GraficaHspqComponent
   ],
   imports: [
     BrowserModule,

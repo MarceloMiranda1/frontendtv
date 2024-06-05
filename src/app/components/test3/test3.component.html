@@ -12,10 +12,10 @@
         <label class="form-label">{{pregunta_actual.nro_pregunta}}.- {{pregunta_actual.texto_pregunta}}</label>
         <div class="form-check" *ngFor="let x of contadorArray " >
           <label class="form-check-label" style="float: left;">
-            <input class="form-check-input" type="radio" name="flexRadioDefault"  [(ngModel)]="respuesta" [value]="opcion[x].id + '-' + opcion[x].valor">
+            <input class="form-check-input" type="radio" name="flexRadioDefault"  [(ngModel)]="respuesta" [value]="opciones_actual[x].id + '-' + opciones_actual[x].valor">
           </label>
           <label class="form-check-label" >
-            {{opcion[x].respuesta}}
+            {{opciones_actual[x].respuesta}}
           </label>
         </div>
 

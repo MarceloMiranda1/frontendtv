@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 nav{
   background-color: #002244;
 }
@@ -19,7 +20,6 @@ h1{
   align-items: center;
   flex-grow: 1;
 }
-
 p{
   text-align: justify
 }

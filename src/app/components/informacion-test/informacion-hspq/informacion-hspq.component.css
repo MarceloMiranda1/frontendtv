@@ -14,18 +14,7 @@ th {
 h1{
   text-align: center;
 }
-.mat-paginator {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-nav{
-  background-color: #002244;
-}
-.nav-link:hover {
-  color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
-}
+
 .button-position{
   margin-left: 10%;
   display: flex;
@@ -41,9 +30,23 @@ nav{
   display: flex;
   align-items: center;
 }
-.nav-link:hover {
-  cursor: pointer; /* Cambia el cursor a un puntero */
+.table-container {
+  display: flex;
+  justify-content: space-between;
 }
+
+.total-value-box {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+  margin-left: 20px; /* Agrega un espacio a la izquierda del div */
+  width: 200px; /* Ajusta el ancho del contenedor */
+  margin: auto; /* Centra el contenedor en la página */
+}
+.disabled-button:disabled {
+  color: black; /* Cambia el color del texto a negro */
+}
+
 
 
 

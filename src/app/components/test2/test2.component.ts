@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./test2.component.css']
 })
 export class Test2Component implements OnInit {
+  public progress: number = 0;
   contadorArray: number[];
   pregunta: any;
   opcion: any;
@@ -91,6 +92,7 @@ export class Test2Component implements OnInit {
     console.log(data);
     this.respuesta = '';
     this.preguntaIndex++;
+    this.progress = Math.floor((this.preguntaIndex / this.pregunta.length) * 100);
     if(this.preguntaIndex === this.pregunta.length){
       this.router.navigate(['/mensaje']);
     } else {

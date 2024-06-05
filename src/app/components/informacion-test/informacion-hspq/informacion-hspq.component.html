@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <h1 class="text-center mb-3">Test de {{users.first_name}} {{users.last_name}}</h1>
       <div class="button-position d-flex align-items-center">
-        <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe_Ipp'})">Exportar</button>
+        <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe_HSPQ'})">Exportar</button>
         <mat-menu #appMenu="matMenu">
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/1">Razonamiento Verbal</button>
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/2">Razonamiento Numérico</button>
@@ -15,7 +15,6 @@
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/6">Ortografía</button>
           <button mat-menu-item routerLink="/informacionTest/{{users.id}}/7">Rapidez y Exactitud</button>
         </mat-menu>
-        <!-- Botón vinculado al menú -->
         <button class="mb-3 me-3" mat-flat-button color="primary" [matMenuTriggerFor]="appMenu">DAT</button>
         <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionIpp/{{users.id}}">IPP</button>
         <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionHspq/{{users.id}}">HSPQ</button>
@@ -30,12 +29,12 @@
 
         <ng-container matColumnDef="Pregunta">
           <th mat-header-cell *matHeaderCellDef style="width: 70%;">Pregunta</th>
-          <td mat-cell *matCellDef="let respuesta">{{ getPreguntaName(respuesta.pregunta_id) }}</td>
+          <td mat-cell *matCellDef="let respuesta">{{ getPreguntaName(respuesta.id_pregunta) }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Categoria">
-          <th mat-header-cell *matHeaderCellDef>Categoria</th>
-          <td mat-cell *matCellDef="let respuesta">{{ respuesta.categoria}}</td>
+        <ng-container matColumnDef="Seccion">
+          <th mat-header-cell *matHeaderCellDef>Sección</th>
+          <td mat-cell *matCellDef="let respuesta">{{ respuesta.seccion}}</td>
         </ng-container>
 
         <ng-container matColumnDef="Opcion">

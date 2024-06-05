@@ -2,19 +2,22 @@
   text-align: center;
 }
 
-h1 {
-  background-color: #002244; /* Fondo azul oscuro */
-  color: white; /* Texto blanco */
-  padding-left: 20px; /* Espacio a la izquierda para la imagen */
-  display: flex;
-  align-items: center;
-  font-size: 36px;
-
+nav{
+  background-color: #002244;
 }
-img {
-  margin-right: 20px; /* Espacio entre la imagen y el texto */
-  width: 20%; /* Ancho deseado para la imagen */
-  height: auto; ; /* Espacio entre la imagen y el texto */
+h1{
+  /*text-align: center;*/
+  color: white;
+}
+.container-fluid {
+  display: flex;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 p{
   text-align: justify

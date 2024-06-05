@@ -18,6 +18,9 @@ import {MensajeTestComponent} from "./components/mensaje-test/mensaje-test.compo
 import {InstruccionIppComponent} from "./components/instruccion/instruccion-ipp/instruccion-ipp.component";
 import {Test2Component} from "./components/test2/test2.component";
 import {InformacionIppComponent} from "./components/informacion-test/informacion-ipp/informacion-ipp.component";
+import {InstruccionHspqComponent} from "./components/instruccion/instruccion-hspq/instruccion-hspq.component";
+import {Test3Component} from "./components/test3/test3.component";
+import {InformacionHspqComponent} from "./components/informacion-test/informacion-hspq/informacion-hspq.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -27,8 +30,10 @@ const routes: Routes = [
   {path: 'usuario/:idUsuario', component:AddTutorComponent},
   {path: 'instrucciones', component: InstruccionComponent},
   {path: 'instrucciones_ipp', component: InstruccionIppComponent},
+  {path: 'instrucciones_hspq', component: InstruccionHspqComponent},
   {path: 'pregunta', component: Test1Component},
   {path: 'preguntaIpp', component: Test2Component},
+  {path: 'preguntaHspq', component: Test3Component},
   {path: 'form_student', component: FormStudentComponent},
   {path: 'encuesta/:usuario_id', component:EncuestaComponent},
   {path: 'login_students', component:LoginStudentsComponent},
@@ -37,6 +42,7 @@ const routes: Routes = [
   {path: 'informacionTest/:usuario_id/:seccion_id', component:InformacionTestComponent},
   {path: 'informacionEncuesta/:usuario_id', component:InformacionEncuestaComponent},
   {path: 'informacionIpp/:usuario_id', component:InformacionIppComponent},
+  {path: 'informacionHspq/:usuario_id', component:InformacionHspqComponent},
   {path: '', component:LoginComponent}
 ];
 

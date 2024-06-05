@@ -1,0 +1,7 @@
+.apexcharts-yaxis-labels {
+  visibility: hidden;
+}
+
+.apexcharts-yaxis-labels:last-child {
+  visibility: visible;
+}

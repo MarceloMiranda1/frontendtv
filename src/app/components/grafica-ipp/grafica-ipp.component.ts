@@ -26,7 +26,21 @@ export class GraficaIppComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 500
+        height: 500,
+        toolbar: {
+          export: {
+            csv: {
+              show: false,
+            },
+            svg: {
+              show: false,
+            },
+            png: {
+              show: true,
+              filename: "Prueba IPP"
+            }
+          }
+        }
       },
       plotOptions: {
         bar: {
@@ -75,7 +89,7 @@ export class GraficaIppComponent implements OnInit {
       tooltip: {
         y: {
           formatter: function(val:number) {
-            return "$ " + val + " thousands";
+            return val + " Percentil";
           }
         }
       }
