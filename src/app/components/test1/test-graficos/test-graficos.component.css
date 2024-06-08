@@ -1,0 +1,52 @@
+.container {
+  text-align: center;
+}
+
+nav{
+  background-color: #002244;
+}
+h1{
+  /*text-align: center;*/
+  color: white;
+}
+.container-fluid {
+  display: flex;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+p{
+  text-align: justify
+}
+.pregunta{
+  border-radius: 10px; /* Ajusta según tu preferencia */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombras suave */
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 50%;
+  transition: transform 0.3s ease; /* Transición suave */
+  margin-bottom: 20px;
+}
+input {
+  border-color: #ADD8E6;
+  border-width: 2px;
+}
+.img-size {
+  width: 100%; /* Ajusta el ancho según tu preferencia */
+  height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}
+.img-size {
+  width: 100%; /* Ajusta el ancho según tu preferencia */
+  height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+}
+
+

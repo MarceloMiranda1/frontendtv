@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {UsersService} from "../../users.service";
 import {HttpHeaders, HttpUserEvent} from "@angular/common/http";
 import {Usuariodto} from "../../dto/usuariodto";
 import {ActivatedRoute, Router} from "@angular/router";
-
+declare var MathJax: any;
 @Component({
   selector: 'app-test1',
   templateUrl: './test1.component.html',
   styleUrls: ['./test1.component.css']
 })
-export class Test1Component implements OnInit {
+export class Test1Component implements OnInit, AfterViewChecked{
+  ngAfterViewChecked(): void {
+
+    MathJax.typeset();
+  }
+
   public progress: number = 0;
-  contadorArray: number[];
+  contadorArray: number[] = [];
   seccion: any;
   pregunta: any;
   opcion: any;
@@ -23,11 +28,12 @@ export class Test1Component implements OnInit {
   seccionParam: any;
   preguntaParam: any;
   opcionParam: any;
+  lengthParam: any;
 
   preguntaIndex = 1;
+  opcionIndex = 1;
 
   constructor(private usersService: UsersService,private route: ActivatedRoute, private router: Router) {
-    this.contadorArray = Array.from({length: 5}, (_, index) => index);
     this.usuarioActual = this.usersService.currentUserValue;
   }
 
@@ -36,11 +42,18 @@ export class Test1Component implements OnInit {
       this.seccionParam = params['seccion'];
       this.preguntaParam = params['pregunta'];
       this.opcionParam = params['opcion'];
+      this.lengthParam = params['lenght'];
+
+      this.contadorArray = Array.from({length: this.lengthParam}, (_, index) => index);
 
       this.getSession();
       this.getSeccion();
       this.getPreguntaPorSeccion(this.preguntaParam);
       this.getOpcion();
+      this.isImageUrl(this.pregunta_actual.imagen);
+      this.isEquationOrUrl(this.pregunta_actual.imagen);
+      MathJax.typeset();
+
     });
   }
 
@@ -72,6 +85,8 @@ export class Test1Component implements OnInit {
         this.pregunta = data;
         this.pregunta_actual = this.pregunta[this.preguntaIndex];
         console.log(this.pregunta);
+        MathJax.typeset();
+
       },
       (error) => {
         console.error('Error al obtener la seccion:', error);
@@ -122,5 +137,16 @@ export class Test1Component implements OnInit {
       console.error('Error al almacenar la respuesta:', error);
     });
   }
-
+  isImageUrl(url: string): boolean {
+    return /\.(?:jpg|gif|png)$/.test(url);
   }
+  isEquationOrUrl(image: string): string {
+    if (this.isImageUrl(image)) {
+      return image;
+    } else {
+      return `$$${image}$$`;
+    }
+  }
+
+
+}

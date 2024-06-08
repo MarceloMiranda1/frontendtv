@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-5">
+  <div class="container-fluid">
+    <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo" style="width: 50px; margin-right: 20px;">
+    <div class="centered-content">
+      <h1>{{ seccion[0].nombre }}</h1>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="pregunta">
+    <div class="mb-2">
+      <form>
+        <label class="form-label">{{pregunta_actual.nro_pregunta}}.- {{pregunta_actual.texto_pregunta}}</label>
+        <img class="img-size" *ngIf="isImageUrl(pregunta_actual.imagen)" [src]="pregunta_actual.imagen">
+        <div class="form-check" *ngFor="let x of contadorArray " >
+          <label class="form-check-label" style="float: left;">
+            <input class="form-check-input" type="radio" name="flexRadioDefault"  [(ngModel)]="respuesta" [value]="opciones_actual[x].id + '-' + opciones_actual[x].valor">
+          </label>
+          <label class="form-check-label" >
+            {{opciones_actual[x].respuesta}}
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="siguiente(this.pregunta_actual.id)">Siguiente</button>
+      </form>
+    </div>
+  </div>
+  <div class="progress" aria-label="Success example">
+    <div class="progress-bar bg-success"  role="progressbar" [style.width]="progress + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{progress}}%</div>
+  </div>
+</div>

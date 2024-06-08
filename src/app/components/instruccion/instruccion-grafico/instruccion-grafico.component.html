@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-5">
+  <div class="container-fluid">
+    <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo" style="width: 50px; margin-right: 20px;">
+    <div class="centered-content">
+      <h1>{{ test[0].nombre }} Sección {{seccion[0].nombre}}</h1>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <p>{{ seccion[0].instruccion }}</p>
+  <div class="pregunta">
+    <div class="mb-2">
+      <form>
+        <label class="form-label">{{pregunta[0].nro_pregunta}}  {{pregunta[0].texto_pregunta}}</label>
+        <img class="img-size" *ngIf="isImageUrl(pregunta[0].imagen)" [src]="pregunta[0].imagen">
+        <div class="form-check" *ngFor="let i of contadorArray">
+          <label class="form-check-label" style="float: left;">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" >
+            {{opcion[i].inciso}}
+          </label>
+          <label class="form-check-label" >
+            {{opcion[i].respuesta}}
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+      </form>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="startTest()">Iniciar</button>
+</div>

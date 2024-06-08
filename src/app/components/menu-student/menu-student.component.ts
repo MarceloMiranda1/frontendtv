@@ -13,6 +13,7 @@ export class MenuStudentComponent implements OnInit {
   seccion: any;
   pregunta: any;
   opcion: any;
+  lenght: any;
   constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
@@ -26,14 +27,40 @@ export class MenuStudentComponent implements OnInit {
     this.seccion = 1;
     this.pregunta = 1;
     this.opcion = 1;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion } });
+    this.lenght = 5;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
   }
   onSecondButtonClick(): void {
     this.test = 1;
     this.seccion = 1;
     this.pregunta = 2;
     this.opcion = 12;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion } });
+    this.lenght = 5;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght  } });
+  }
+  onThirdButtonClick(): void {
+    this.test = 1;
+    this.seccion = 1;
+    this.pregunta = 3;
+    this.opcion = 83;
+    this.lenght = 5;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
+  }
+  onFourthButtonClick(): void {
+    this.test = 1;
+    this.seccion = 1;
+    this.pregunta = 4;
+    this.opcion = 124;
+    this.lenght = 3;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
+  }
+  onFifthButtonClick(): void {
+    this.test = 1;
+    this.seccion = 1;
+    this.pregunta = 5;
+    this.opcion = 185;
+    this.lenght = 4;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
   }
 
 

@@ -44,6 +44,8 @@ import { InformacionHspqComponent } from './components/informacion-test/informac
 import { InstruccionHspqComponent } from './components/instruccion/instruccion-hspq/instruccion-hspq.component';
 import { Test3Component } from './components/test3/test3.component';
 import { GraficaHspqComponent } from './components/grafica-hspq/grafica-hspq.component';
+import { InstruccionGraficoComponent } from './components/instruccion/instruccion-grafico/instruccion-grafico.component';
+import { TestGraficosComponent } from './components/test1/test-graficos/test-graficos.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { GraficaHspqComponent } from './components/grafica-hspq/grafica-hspq.com
     InformacionHspqComponent,
     InstruccionHspqComponent,
     Test3Component,
-    GraficaHspqComponent
+    GraficaHspqComponent,
+    InstruccionGraficoComponent,
+    TestGraficosComponent
   ],
   imports: [
     BrowserModule,

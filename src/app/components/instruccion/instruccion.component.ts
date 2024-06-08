@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class InstruccionComponent implements OnInit {
   session: any;
-  contadorArray: number[];
+  contadorArray: number[] = [];
   test: any;
   seccion: any;
   pregunta: any;
@@ -18,8 +18,8 @@ export class InstruccionComponent implements OnInit {
   seccionParam: any = "";
   preguntaParam: any = "";
   opcionParam: any = "";
+  lenghtParam: any = "";
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
-    this.contadorArray = Array.from({length: 5}, (_, index) => index);
   }
 
   ngOnInit(): void {
@@ -28,11 +28,15 @@ export class InstruccionComponent implements OnInit {
       this.seccionParam = params['seccion'];
       this.preguntaParam = params['pregunta'];
       this.opcionParam = params['opcion'];
+      this.lenghtParam = params['lenght'];
+
+      this.contadorArray = Array.from({length: this.lenghtParam}, (_, index) => index);
 
       this.getTest(this.testParam);
       this.getSeccion(this.seccionParam);
       this.getPregunta(this.preguntaParam);
       this.getOpcion(this.opcionParam);
+      this.isImageUrl(this.pregunta.imagen);
     });
   }
   getSession(): void {
@@ -88,7 +92,11 @@ export class InstruccionComponent implements OnInit {
     );
   }
   startTest(){
-    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionParam } });
+    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionParam, lenght: this.lenghtParam } });
+  }
+
+  isImageUrl(url: string): boolean {
+  return /\.(?:jpg|gif|png)$/.test(url);
   }
 
 
