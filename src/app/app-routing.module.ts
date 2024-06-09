@@ -23,6 +23,7 @@ import {Test3Component} from "./components/test3/test3.component";
 import {InformacionHspqComponent} from "./components/informacion-test/informacion-hspq/informacion-hspq.component";
 import {InstruccionGraficoComponent} from "./components/instruccion/instruccion-grafico/instruccion-grafico.component";
 import {TestGraficosComponent} from "./components/test1/test-graficos/test-graficos.component";
+import {ModuloSisComponent} from "./components/modulo-sis/modulo-sis.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'instrucciones_ipp', component: InstruccionIppComponent},
   {path: 'instrucciones_hspq', component: InstruccionHspqComponent},
   {path: 'instruccion_grafico', component: InstruccionGraficoComponent},
+  {path: 'ingenieria-sis' , component: ModuloSisComponent},
   {path: 'pregunta', component: Test1Component},
   {path: 'pregunta_grafico', component: TestGraficosComponent},
   {path: 'preguntaIpp', component: Test2Component},

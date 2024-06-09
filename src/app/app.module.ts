@@ -46,6 +46,7 @@ import { Test3Component } from './components/test3/test3.component';
 import { GraficaHspqComponent } from './components/grafica-hspq/grafica-hspq.component';
 import { InstruccionGraficoComponent } from './components/instruccion/instruccion-grafico/instruccion-grafico.component';
 import { TestGraficosComponent } from './components/test1/test-graficos/test-graficos.component';
+import { ModuloSisComponent} from "./components/modulo-sis/modulo-sis.component";
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { TestGraficosComponent } from './components/test1/test-graficos/test-gra
     Test3Component,
     GraficaHspqComponent,
     InstruccionGraficoComponent,
-    TestGraficosComponent
+    TestGraficosComponent,
+    ModuloSisComponent
   ],
   imports: [
     BrowserModule,
