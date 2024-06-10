@@ -62,6 +62,22 @@ export class MenuStudentComponent implements OnInit {
     this.lenght = 4;
     this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
   }
+  onSixthButtonClick(): void {
+    this.test = 1;
+    this.seccion = 1;
+    this.pregunta = 6;
+    this.opcion = 236;
+    this.lenght = 4;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
+  }
+  onSeventhButtonClick(): void {
+    this.test = 1;
+    this.seccion = 1;
+    this.pregunta = 7;
+    this.opcion = 277;
+    this.lenght = 5;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght } });
+  }
 
 
 }

@@ -1,34 +1,34 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
-import {Usuariodto} from "../../dto/usuariodto";
-import {TipoUsuarioDto} from "../../dto/tipoUsuarioDto";
-import {UsersService} from "../../users.service";
-import {RespuestaSADto} from "../../dto/respuestaSADto";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TestDto} from "../../dto/testDto";
-import {SeccionDto} from "../../dto/seccionDto";
-import {PreguntasaDto} from "../../dto/preguntasaDto";
-import {OpcionsaDto} from "../../dto/opcionsaDto";
 import {MatTableExporterDirective} from "mat-table-exporter";
-import {MatDialog} from "@angular/material/dialog";
-import {GraficaTestComponent} from "../grafica-test/grafica-test.component";
 import {Subscription} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
+import {RespuestaSADto} from "../../../dto/respuestaSADto";
+import {TestDto} from "../../../dto/testDto";
+import {SeccionDto} from "../../../dto/seccionDto";
+import {PreguntasaDto} from "../../../dto/preguntasaDto";
+import {OpcionsaDto} from "../../../dto/opcionsaDto";
+import {UsersService} from "../../../users.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {GraficaTestComponent} from "../../grafica-test/grafica-test.component";
+import {TotalDto} from "../../../dto/totalDto";
 
 @Component({
-  selector: 'app-informacion-test',
-  templateUrl: './informacion-test.component.html',
-  styleUrls: ['./informacion-test.component.css']
+  selector: 'app-informacion-dat',
+  templateUrl: './informacion-dat.component.html',
+  styleUrls: ['./informacion-dat.component.css']
 })
-export class InformacionTestComponent implements OnInit, AfterViewInit {
+export class InformacionDatComponent implements OnInit, AfterViewInit {
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTableExporterDirective) exporter: MatTableExporterDirective | undefined;
   routerSubscription: Subscription | null = null;
 
-  dataSource: MatTableDataSource<RespuestaSADto> = new MatTableDataSource<RespuestaSADto>([]);
-  displayedColumns: string[] = ['Test', 'Apartado', 'Pregunta', 'Opcion', 'Valor'];
+  dataSource: MatTableDataSource<TotalDto> = new MatTableDataSource<TotalDto>([]);
+  displayedColumns: string[] = ['Test', 'Seccion', 'Total', 'Conversion', 'Acciones'];
 
   users: any;
   percentil: any;
@@ -40,6 +40,7 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
   id_usuario: any;
   id_seccion: any;
   totalValue: number = 0;
+  conversion: any;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
 
@@ -51,7 +52,6 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.routerSubscription = this.route.params.subscribe(() => {
       this.id_usuario = this.route.snapshot.params['usuario_id'];
-      this.id_seccion = this.route.snapshot.params['seccion_id'];
       this.loadData();
     });
     const fileName = `${this.users.first_name}_${this.users.last_name}_Informe`;
@@ -65,15 +65,14 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     this.loadRespuestas()
     this.loadTest();
     this.loadApartado();
-    this.loadPregunta();
-    this.loadOpcion();
+    this.getConversion();
   }
 
   loadRespuestas(): void {
-    this.usersService.getRespuestaSAByIdSeccion(this.id_usuario,this.id_seccion).subscribe(data => {
+    this.usersService.getTotalRespuestaSA(this.id_usuario).subscribe(data => {
       this.respuestas = data;
       console.log(data)
-      this.dataSource = new MatTableDataSource<RespuestaSADto>(this.respuestas);
+      this.dataSource = new MatTableDataSource<TotalDto>(this.respuestas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
@@ -101,31 +100,34 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     const seccion = this.apartado.find(seccion => seccion.id === id_seccion);
     return seccion ? seccion.nombre : '';
   }
-  loadPregunta(): void {
-    this.usersService.preguntasaGet().subscribe(data => {
-      this.pregunta = data
-      console.log(data)
+  getConversion(): void {
+    this.usersService.getConversion(this.id_usuario).subscribe(data => {
+      this.conversion = data;
+      console.log(this.conversion)
     });
   }
-  getPreguntaName(id_pregunta: number): string {
-    const pregunta = this.pregunta.find(pregunta => pregunta.id === id_pregunta);
-    return pregunta ? pregunta.texto_pregunta : '';
-  }
-  loadOpcion(): void {
-    this.usersService.opcionsaGet().subscribe(data => {
-      this.opcion = data
-      console.log(data)
+
+  openChartDialog(): void {
+    this.dialog.open(GraficaTestComponent,{
+      width: '900px',
+      height: '420px',
+      data: {
+        total: this.conversion,
+        showNumbers: true
+      }
     });
   }
-  getOpcionName(id_opcion: number): string {
-    const opcion = this.opcion.find(opcion => opcion.id === id_opcion);
-    return opcion ? opcion.inciso : '';
+  openChartDialogWithoutNumbers(): void {
+    this.dialog.open(GraficaTestComponent,{
+      width: '900px',
+      height: '420px',
+      data: {
+        total: this.conversion,
+        showNumbers: false
+      }
+    });
   }
-
-
-
   onPageChange(event: any): void {
     this.loadRespuestas();
   }
-
 }

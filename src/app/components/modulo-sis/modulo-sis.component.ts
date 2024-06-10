@@ -14,25 +14,48 @@ export class ModuloSisComponent implements OnInit {
     // Establecer el valor inicial del textarea
     let htmlCodeElement = document.getElementById('html-code') as HTMLTextAreaElement;
     if (htmlCodeElement) {
-      htmlCodeElement.value = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Encabezado 1</th>
-                        <th>Encabezado 2</th>
-                        <th>Encabezado 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Dato 1</td>
-                        <td>Dato 2</td>
-                        <td>Dato 3</td>
-                    </tr>
-                </tbody>
-            </table>`;
-      this.run();
+      htmlCodeElement.value = `<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+`;
+
     }
+    let cssCodeElement = document.getElementById('css-code') as HTMLTextAreaElement;
+    if (cssCodeElement) {
+      cssCodeElement.value = `thead{
+    background-color: red;
+    color: white;
+    }
+    `;
+    }
+    this.run();
   }
 
   run(): void {
@@ -42,7 +65,6 @@ export class ModuloSisComponent implements OnInit {
     let output = document.getElementById('output') as HTMLIFrameElement;
 
     if (output && output.contentDocument) {
-      // Agregar referencia a los estilos de Bootstrap
       let bootstrapLink = output.contentDocument.createElement('link');
       bootstrapLink.rel = 'stylesheet';
       bootstrapLink.href = 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';

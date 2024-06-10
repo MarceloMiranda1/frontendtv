@@ -1,0 +1,53 @@
+table {
+  width: 80%;
+  margin: 0 auto;
+}
+a{
+  color: white;
+  font-family: Arial;
+}
+th {
+  background-color: #002244;
+  color: white;
+  font-family: Arial;
+}
+h1{
+  text-align: center;
+}
+
+.button-position{
+  margin-left: 10%;
+  display: flex;
+  align-items: center;
+}
+.button-color{
+  background-color: #002244;
+  color: white;
+}
+.custom-input {
+  width: 250px; /* Ajusta el valor del ancho según lo necesites */
+  margin-right: 11%;
+  display: flex;
+  align-items: center;
+}
+.table-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-value-box {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+  margin-left: 20px; /* Agrega un espacio a la izquierda del div */
+  width: 200px; /* Ajusta el ancho del contenedor */
+  margin: auto; /* Centra el contenedor en la página */
+}
+.disabled-button:disabled {
+  color: black; /* Cambia el color del texto a negro */
+}
+
+
+
+
+

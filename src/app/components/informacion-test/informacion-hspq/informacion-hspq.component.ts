@@ -120,9 +120,9 @@ export class InformacionHspqComponent implements OnInit {
   openChartDialog(): void {
     this.dialog.open(GraficaHspqComponent, {
       width: '100%',
-      height: '570px',
+      height: '600px',
       data: {
-        decatipo: this.decatipo
+        total: this.decatipo
       }
     });
   }
@@ -131,7 +131,7 @@ export class InformacionHspqComponent implements OnInit {
       width: '900px',
       height: '420px',
       data: {
-        total: this.decatipo.correct_answers,
+        total: this.decatipo,
         showNumbers: false
       }
     });

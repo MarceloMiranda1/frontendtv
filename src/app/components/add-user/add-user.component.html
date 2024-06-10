@@ -44,7 +44,13 @@
       <div class="form-row">
         <div class="col">
           <label for="password" class="form-label">Contraseña</label>
-          <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
+          <input type="password" name="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required (keyup)="form.get('password')?.updateValueAndValidity()">
+          <div *ngIf="form.get('password')?.errors?.['minlength']" class="text-danger">
+            La contraseña debe tener al menos 10 caracteres.
+          </div>
+          <div *ngIf="form.get('password')?.errors?.['noSpecialChar']" class="text-danger">
+            La contraseña debe contener al menos un carácter especial.
+          </div>
         </div>
 
       </div>

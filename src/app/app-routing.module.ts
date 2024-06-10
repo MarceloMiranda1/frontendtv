@@ -24,6 +24,8 @@ import {InformacionHspqComponent} from "./components/informacion-test/informacio
 import {InstruccionGraficoComponent} from "./components/instruccion/instruccion-grafico/instruccion-grafico.component";
 import {TestGraficosComponent} from "./components/test1/test-graficos/test-graficos.component";
 import {ModuloSisComponent} from "./components/modulo-sis/modulo-sis.component";
+import {RedesSisComponent} from "./components/modulo-sis/redes-sis/redes-sis.component";
+import {InformacionDatComponent} from "./components/informacion-test/informacion-dat/informacion-dat.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -36,6 +38,7 @@ const routes: Routes = [
   {path: 'instrucciones_hspq', component: InstruccionHspqComponent},
   {path: 'instruccion_grafico', component: InstruccionGraficoComponent},
   {path: 'ingenieria-sis' , component: ModuloSisComponent},
+  {path: 'redes-sis' , component: RedesSisComponent},
   {path: 'pregunta', component: Test1Component},
   {path: 'pregunta_grafico', component: TestGraficosComponent},
   {path: 'preguntaIpp', component: Test2Component},
@@ -49,6 +52,7 @@ const routes: Routes = [
   {path: 'informacionEncuesta/:usuario_id', component:InformacionEncuestaComponent},
   {path: 'informacionIpp/:usuario_id', component:InformacionIppComponent},
   {path: 'informacionHspq/:usuario_id', component:InformacionHspqComponent},
+  {path: 'informacionDat/:usuario_id', component:InformacionDatComponent},
   {path: '', component:LoginComponent}
 ];
 

@@ -11,12 +11,12 @@ export class GraficaHspqComponent implements OnInit {
 
   public chartOptions: any;
 
-  constructor() {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.chartOptions = {
       series: [
         {
           name: "basic",
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+          data: [this.data]
         }
       ],
       chart: {
@@ -33,16 +33,20 @@ export class GraficaHspqComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "Dificultad Manejo Emocional - Adecuado Manejo Emocional ",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany"
+          "Reservado - Abierto",
+          "Emocionalmente Afectado - Estable",
+          "Calmado - Excitable",
+          "Sumiso - Dominante",
+          "Sobrio - Entusiasta",
+          "Despreocupado - Consciente",
+          "Cohibido - Emprendedor",
+          "Sensibilidad Dura - Blanda",
+          "Seguro - Dubitativo",
+          "Sereno - Aprensivo",
+          "Sociable - Autosuficiente",
+          "Menos - Mas integrado",
+          "Relajado - Tenso"
+
         ]
       },
 

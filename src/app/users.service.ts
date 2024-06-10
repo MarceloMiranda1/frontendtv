@@ -18,6 +18,7 @@ import {OpcionIppDto} from "./dto/opcionIppDto";
 import {PreguntahspqDto} from "./dto/preguntahspqDto";
 import {OpcionHspqDto} from "./dto/opcionHspqDto";
 import {RespuestaHspqDto} from "./dto/respuestaHspqDto";
+import {TotalDto} from "./dto/totalDto";
 
 
 @Injectable({
@@ -172,6 +173,13 @@ export class UsersService {
   });
   return this.http.post<RespuestaSADto>(`${this.url}respuestaSa/${opcion_id}`, user, { headers: headers });
 }
+  getTotalRespuestaSA(usuario_id:number):Observable<TotalDto>{
+    return this.http.get<TotalDto>(`${this.url}user/${usuario_id}/test-results/`);
+  }
+  getConversion(usuario_id:number):Observable<TotalDto>{
+    return this.http.get<TotalDto>(`${this.url}user/${usuario_id}/conversion/`);
+  }
+
   getRespuestaSAById(usuario_id:number):Observable<RespuestaSADto>{
     return this.http.get<RespuestaSADto>(`${this.url}viewSa/${usuario_id}`);
   }

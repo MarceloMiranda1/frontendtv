@@ -6,22 +6,8 @@
       <h1 class="text-center mb-3">Test de {{users.first_name}} {{users.last_name}}</h1>
       <div class="button-position d-flex align-items-center">
         <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe'})">Exportar</button>
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/1">Razonamiento Verbal</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/2">Razonamiento Numérico</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/3">Razonamiento Abstracto</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/4">Razonamiento Mecánico</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/5">Razonamiento Espacial</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/6">Ortografía</button>
-          <button mat-menu-item routerLink="/informacionTest/{{users.id}}/7">Rapidez y Exactitud</button>
-        </mat-menu>
-        <!-- Botón vinculado al menú -->
-        <button class="mb-3 me-3" mat-flat-button color="primary" [matMenuTriggerFor]="appMenu">DAT</button>
-        <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionIpp/{{users.id}}">IPP</button>
-        <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionHspq/{{users.id}}">HSPQ</button>
-        <button class="mb-3 me-3" mat-flat-button color="primary"  routerLink="/informacionEncuesta/{{users.id}}">Encuesta</button>
 
-        <button class="btn btn-danger mb-3 me-3" routerLink="/usuarios/estudiantes">Volver</button>
+        <button class="btn btn-danger mb-3 me-3" routerLink="/informacionDat/{{users.id}}">Volver</button>
         <div class="flex-grow-1"></div>
         <input class="form-control mb-3 custom-input" type="search" placeholder="Buscador" aria-label="Search">
       </div>
@@ -63,12 +49,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
-      <div class="button-position d-flex align-items-center">
-        <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialog()">Mostrar Gráfica</button>
-        <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialogWithoutNumbers()">Mostrar Gráfica sin Números</button>
-        <button mat-button [disabled]="true" class="disabled-button"> Puntaje: {{ totalValue }}</button>
-        <button mat-button [disabled]="true" class="disabled-button"> Percentil: {{percentil.correct_answers}}</button>
-      </div>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" (page)="onPageChange($event)"
                      [length]="dataSource.data.length" [pageSize]="5" showFirstLastButtons position="both">

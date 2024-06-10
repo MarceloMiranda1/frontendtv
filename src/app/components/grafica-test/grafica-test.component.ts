@@ -14,7 +14,7 @@ export class GraficaTestComponent implements OnInit {
       series: [
         {
           name: "Resultado",
-          data: [this.data.total, 41, 35, 51, 49, 62, 69],
+          data: this.data.total.map((item: any) => item.conversion),
         }
       ],
       chart: {
