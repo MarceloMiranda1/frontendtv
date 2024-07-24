@@ -28,6 +28,7 @@ export class UsersService {
 
   private url: string = "http://localhost:8000/api/"
   private url2: string = "http://localhost:8000/accounts/"
+  private url3: string = "http://127.0.0.1:5000/"
   private currentUserSubject: BehaviorSubject<Usuariodto | null>;
 
 
@@ -257,6 +258,8 @@ export class UsersService {
   getDecatipo(usuario_id:number):Observable<RespuestaHspqDto>{
     return this.http.get<RespuestaHspqDto>(`${this.url}user/${usuario_id}/section_sumHspq/`);
   }
-
+  getPrediccion(usuario_id:number):Observable<RespuestaIppDto>{
+    return this.http.get<RespuestaIppDto>(`${this.url3}api/predict/${usuario_id}`);
+  }
 
 }

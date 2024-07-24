@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light mb-5">
   <div class="container-fluid">
     <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png" alt="Logo" style="width: 50px; margin-right: 20px;">
+    <img src="assets/image/Logo/LOGO%20SOV.jpg" alt="Logo" style="width: 100px; " >
     <div class="centered-content">
-      <h1>{{ seccion[0].nombre }}</h1>
+      <h1>{{ seccion[posicionParam].nombre }}</h1>
     </div>
   </div>
 </nav>
@@ -10,19 +11,18 @@
   <div class="pregunta">
     <div class="mb-2">
       <form>
-        <label class="form-label" [innerHTML]="pregunta_actual.nro_pregunta + '.- ' + pregunta_actual.texto_pregunta"></label>
-        <img *ngIf="isImageUrl(pregunta_actual.imagen)" [src]="pregunta_actual.imagen" alt="Imagen">
-        <div *ngIf="!isImageUrl(pregunta_actual.imagen)"><span>{{pregunta_actual.imagen}}</span></div>
-
-        <div class="form-check" *ngFor="let x of contadorArray " >
-            <label class="form-check-label" style="float: left;">
-              <input class="form-check-input" type="radio" name="flexRadioDefault"  [(ngModel)]="respuesta" [value]="opciones_actual[x].id + '-' + opciones_actual[x].valor">
-            </label>
-            <label class="form-check-label" >
-              {{opciones_actual[x].respuesta}}
-            </label>
+        <label class="form-label mb-3" [innerHTML]="pregunta_actual.nro_pregunta + '.- ' + pregunta_actual.texto_pregunta"></label>
+        <img class="mb-3" *ngIf="isImageUrl(pregunta_actual.imagen)" [src]="pregunta_actual.imagen" alt="Imagen">
+        <div class="mb-3" *ngIf="!isImageUrl(pregunta_actual.imagen)"><span>{{pregunta_actual.imagen}}</span></div>
+        <div class="form-check mb-3" *ngFor="let x of contadorArray " >
+          <label class="form-check-label" style="float: left;">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" [(ngModel)]="respuesta" [value]="opciones_actual[x].id + '-' + opciones_actual[x].valor">
+          </label>
+          <label class="form-check-label" >
+            {{opciones_actual[x].respuesta}}
+          </label>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="siguiente(this.pregunta_actual.id)">Siguiente</button>
+        <button type="submit" class="btn btn-primary " (click)="siguiente(this.pregunta_actual.id)">Siguiente</button>
       </form>
     </div>
   </div>

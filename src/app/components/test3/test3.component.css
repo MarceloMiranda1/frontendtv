@@ -1,14 +1,15 @@
 .container {
   text-align: center;
+  height: 82%;
 }
 
-
 nav{
-  background-color: #002244;
+  background-color: #11269B;
 }
 h1{
   /*text-align: center;*/
   color: white;
+  font-family: Candara, sans-serif;
 }
 .container-fluid {
   display: flex;
@@ -21,20 +22,33 @@ h1{
   flex-grow: 1;
 }
 p{
-  text-align: justify
+  text-align: justify;
+  font-family: Candara, sans-serif;
+  font-size: 20px;
 }
 .pregunta{
   border-radius: 10px; /* Ajusta según tu preferencia */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombras suave */
   padding: 20px;
   margin: 0 auto;
-  max-width: 30%;
+  max-width: 80%;
+  height: 80%;
   transition: transform 0.3s ease; /* Transición suave */
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 input {
   border-color: #ADD8E6;
   border-width: 2px;
+}
+form {
+  font-size: 30px; /* Ajusta este valor según tu preferencia */
+}
+.form-label {
+  line-height: 1; /* Ajusta este valor según tu preferencia */
 }
 
 

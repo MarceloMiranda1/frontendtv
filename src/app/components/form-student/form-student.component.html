@@ -30,7 +30,11 @@
         </div>
         <div class="col">
           <label for="sexo" class="form-label">Sexo</label>
-          <input type="text" name="sexo" id="sexo" formControlName="sexo" class="form-control" placeholder="Sexo" required>
+          <select name="sexo" id="sexo" formControlName="sexo" class="form-control" required>
+            <option value="">Selecciona el sexo</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
         </div>
         <div class="col">
           <label for="email" class="form-label">Correo</label>
@@ -48,7 +52,11 @@
         </div>
         <div class="col">
           <label for="grado_escolar" class="form-label">Grado Escolar</label>
-          <input type="text" name="grado_escolar" id="grado_escolar" formControlName="grado_escolar" class="form-control" placeholder="Grado Escolar" required>
+          <select name="grado_escolar" id="grado_escolar" formControlName="grado_escolar" class="form-control" required>
+            <option value="">Selecciona el grado escolar</option>
+            <option value="5to de secundaria">5to de secundaria</option>
+            <option value="6to de secundaria">6to de secundaria</option>
+          </select>
         </div>
 
       </div>

@@ -1,9 +1,10 @@
 .container {
   text-align: center;
+  height: 82%;
 }
 
 nav{
-  background-color: #002244;
+  background-color: #11269B;
 }
 h1{
   /*text-align: center;*/
@@ -27,9 +28,14 @@ p{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombras suave */
   padding: 20px;
   margin: 0 auto;
-  max-width: 30%;
+  max-width: 80%;
+  height: 80%;
   transition: transform 0.3s ease; /* Transición suave */
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 input {
   border-color: #ADD8E6;
@@ -38,10 +44,23 @@ input {
 .progress-container {
   position: relative;
 }
-
-
 .progress-bar {
   transition: width 0.3s ease;
+}
+form {
+  font-size: 30px; /* Ajusta este valor según tu preferencia */
+}
+.form-check-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-check-input {
+  order: -1;
+}
+.form-label {
+  line-height: 1; /* Ajusta este valor según tu preferencia */
 }
 
 

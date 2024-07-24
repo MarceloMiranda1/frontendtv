@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../users.service";
 import {ActivatedRoute, Router} from "@angular/router";
-
 @Component({
   selector: 'app-instruccion',
   templateUrl: './instruccion.component.html',
@@ -19,6 +18,8 @@ export class InstruccionComponent implements OnInit {
   preguntaParam: any = "";
   opcionParam: any = "";
   lenghtParam: any = "";
+  posicionParam: any = "";
+  opcionEnviar: any = "";
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -29,6 +30,7 @@ export class InstruccionComponent implements OnInit {
       this.preguntaParam = params['pregunta'];
       this.opcionParam = params['opcion'];
       this.lenghtParam = params['lenght'];
+      this.posicionParam = params['posicion'];
 
       this.contadorArray = Array.from({length: this.lenghtParam}, (_, index) => index);
 
@@ -84,6 +86,7 @@ export class InstruccionComponent implements OnInit {
   getOpcion(opcionParam:number): void {
     this.usersService.opcion(opcionParam).subscribe((data) => {
         this.opcion = data;
+        this.opcionEnviar = Number(opcionParam) + 1;
         console.log(this.opcion);
       },
       (error) => {
@@ -92,7 +95,7 @@ export class InstruccionComponent implements OnInit {
     );
   }
   startTest(){
-    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionParam, lenght: this.lenghtParam } });
+    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionEnviar , lenght: this.lenghtParam, posicion: this.posicionParam } });
   }
 
   isImageUrl(url: string): boolean {

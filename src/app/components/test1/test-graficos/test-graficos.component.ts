@@ -24,6 +24,7 @@ export class TestGraficosComponent implements OnInit {
   preguntaParam: any;
   opcionParam: any;
   lengthParam: any = "";
+  posicionParam: any;
 
   preguntaIndex = 1;
 
@@ -37,6 +38,7 @@ export class TestGraficosComponent implements OnInit {
       this.preguntaParam = params['pregunta'];
       this.opcionParam = params['opcion'];
       this.lengthParam = params['lenght'];
+      this.posicionParam = params['posicion'];
 
       this.contadorArray = Array.from({length: this.lengthParam}, (_, index) => index);
 

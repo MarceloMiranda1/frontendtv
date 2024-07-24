@@ -4,11 +4,13 @@
 }
 
 nav{
-  background-color: #002244;
+  background-color: #11269B;
 }
 h1{
   /*text-align: center;*/
   color: white;
+  font-family: Candara, sans-serif;
+
 }
 .container-fluid {
   display: flex;
@@ -21,7 +23,9 @@ h1{
   flex-grow: 1;
 }
 p{
-  text-align: justify
+  text-align: justify;
+  font-family: Candara, sans-serif;
+  font-size: 20px;
 }
 .pregunta{
   border-radius: 10px; /* Ajusta según tu preferencia */

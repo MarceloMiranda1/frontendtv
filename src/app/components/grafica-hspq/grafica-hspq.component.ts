@@ -15,13 +15,27 @@ export class GraficaHspqComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: "basic",
-          data: [this.data]
+          name: "Decatipo",
+          data: this.data.total.map((item: any) => item.valor)
         }
       ],
       chart: {
         type: "bar",
-        height: 350
+        height: 350,
+        toolbar: {
+          export: {
+            csv: {
+              show: false,
+            },
+            svg: {
+              show: false,
+            },
+            png: {
+              show: true,
+              filename: "Prueba HSPQ"
+            }
+          }
+        }
       },
       plotOptions: {
         bar: {

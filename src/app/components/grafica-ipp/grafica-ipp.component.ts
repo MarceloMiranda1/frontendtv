@@ -22,8 +22,8 @@ export class GraficaIppComponent implements OnInit {
           name: "Profesión (PR)",
           data: this.data.percentil.map((item: any) => item.PR)
         },
-
       ],
+      colors: ["#63DEC9", "#BE78EE"],
       chart: {
         type: "bar",
         height: 500,
@@ -44,7 +44,7 @@ export class GraficaIppComponent implements OnInit {
       },
       plotOptions: {
         bar: {
-          horizontal: false,
+          horizontal: true,
           columnWidth: "55%",
           endingShape: "rounded"
         }
@@ -77,6 +77,7 @@ export class GraficaIppComponent implements OnInit {
           "Aventura-Riesgo",
           "Mecánico-Manual"
         ]
+
       },
       yaxis: {
         title: {

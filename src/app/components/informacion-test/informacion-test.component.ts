@@ -122,8 +122,6 @@ export class InformacionTestComponent implements OnInit, AfterViewInit {
     return opcion ? opcion.inciso : '';
   }
 
-
-
   onPageChange(event: any): void {
     this.loadRespuestas();
   }

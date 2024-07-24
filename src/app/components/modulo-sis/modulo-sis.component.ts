@@ -15,12 +15,14 @@ export class ModuloSisComponent implements OnInit {
     let htmlCodeElement = document.getElementById('html-code') as HTMLTextAreaElement;
     if (htmlCodeElement) {
       htmlCodeElement.value = `<table class="table table-striped">
-  <thead>
+  <thead id="tableHead">
     <tr>
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Handle</th>
+      <th scope="col">Button</th>
+
     </tr>
   </thead>
   <tbody>
@@ -29,12 +31,14 @@ export class ModuloSisComponent implements OnInit {
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
+
     </tr>
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
+
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -44,6 +48,8 @@ export class ModuloSisComponent implements OnInit {
     </tr>
   </tbody>
 </table>
+<button id="changeColorButton">Cambiar Color</button>
+
 `;
 
     }
@@ -53,6 +59,22 @@ export class ModuloSisComponent implements OnInit {
     background-color: red;
     color: white;
     }
+    button{
+    display: flex;
+  justify-content: center;
+  margin: auto; /* Centra el contenedor en su contenedor padre */
+  color: white;
+  background-color: #002244;
+  width: 20%;
+  height: 50px;
+    }
+    `;
+    }
+    let jsCodeElement = document.getElementById('js-code') as HTMLTextAreaElement;
+    if (jsCodeElement) {
+      jsCodeElement.value = `document.getElementById('changeColorButton').addEventListener('click', function() {
+  document.getElementById('tableHead').style.backgroundColor = 'blue';
+});
     `;
     }
     this.run();

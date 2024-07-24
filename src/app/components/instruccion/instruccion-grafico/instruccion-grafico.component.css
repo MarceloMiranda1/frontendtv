@@ -1,13 +1,15 @@
 .container {
   text-align: center;
+  height: 100%;
 }
 
 nav{
-  background-color: #002244;
+  background-color: #11269B;
 }
 h1{
   /*text-align: center;*/
   color: white;
+  font-family: Candara, sans-serif;
 }
 .container-fluid {
   display: flex;
@@ -21,14 +23,17 @@ h1{
 }
 
 p{
-  text-align: justify
+  text-align: justify;
+  font-family: Candara, sans-serif;
+  font-size: 20px;
 }
 .pregunta{
   border-radius: 10px; /* Ajusta según tu preferencia */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombras suave */
   padding: 20px;
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 60%;
+  height: 100%;
   transition: transform 0.3s ease; /* Transición suave */
   margin-bottom: 20px;
 }
@@ -40,5 +45,21 @@ input {
   width: 100%; /* Ajusta el ancho según tu preferencia */
   height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
 }
+form {
+  font-size: 30px; /* Ajusta este valor según tu preferencia */
+}
+.form-check-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: none;
+}
+.form-check-input {
+  order: -1;
+}
+.form-label {
+  line-height: 1; /* Ajusta este valor según tu preferencia */
+}
+
 
 

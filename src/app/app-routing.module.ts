@@ -26,6 +26,7 @@ import {TestGraficosComponent} from "./components/test1/test-graficos/test-grafi
 import {ModuloSisComponent} from "./components/modulo-sis/modulo-sis.component";
 import {RedesSisComponent} from "./components/modulo-sis/redes-sis/redes-sis.component";
 import {InformacionDatComponent} from "./components/informacion-test/informacion-dat/informacion-dat.component";
+import {GraficaTestComponent} from "./components/grafica-test/grafica-test.component";
 
 const routes: Routes = [
   {path: 'usuarios', component:ViewUserComponent},
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path: 'informacionIpp/:usuario_id', component:InformacionIppComponent},
   {path: 'informacionHspq/:usuario_id', component:InformacionHspqComponent},
   {path: 'informacionDat/:usuario_id', component:InformacionDatComponent},
+  {path: 'grafica', component:GraficaTestComponent},
   {path: '', component:LoginComponent}
 ];
 

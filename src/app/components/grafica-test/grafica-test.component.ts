@@ -51,11 +51,11 @@ export class GraficaTestComponent implements OnInit {
         }
       },
       title: {
-        text: "Grafica Prueba DAT"
+        text: "Gráfica Prueba DAT"
       },
 
       xaxis: {
-        categories: ["Verbal", "Numerico", "Abstracto", "Mecanico", "Espacial", "Ortografía", "Rapidez y Exactitud"],
+        categories: ["Verbal", "Numérico", "Abstracto", "Mecánico", "Espacial", "Ortografía", "Rapidez y Exactitud"],
         crosshairs: {
           fill: {
             type: "gradient",
@@ -69,7 +69,7 @@ export class GraficaTestComponent implements OnInit {
           }
         },
       },
-      colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#0dc4af']
+      colors: ['#e31b1b', '#0fbd0f', '#3f3fff', '#fac203', '#35D3C4', '#CE73C9', '#E80889']
     };
   }
 

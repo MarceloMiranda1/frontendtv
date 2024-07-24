@@ -29,9 +29,9 @@ export class Test1Component implements OnInit, AfterViewChecked{
   preguntaParam: any;
   opcionParam: any;
   lengthParam: any;
+  posicionParam: any;
 
   preguntaIndex = 1;
-  opcionIndex = 1;
 
   constructor(private usersService: UsersService,private route: ActivatedRoute, private router: Router) {
     this.usuarioActual = this.usersService.currentUserValue;
@@ -43,6 +43,7 @@ export class Test1Component implements OnInit, AfterViewChecked{
       this.preguntaParam = params['pregunta'];
       this.opcionParam = params['opcion'];
       this.lengthParam = params['lenght'];
+      this.posicionParam = params['posicion'];
 
       this.contadorArray = Array.from({length: this.lengthParam}, (_, index) => index);
 

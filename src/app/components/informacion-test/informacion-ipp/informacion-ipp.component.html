@@ -48,9 +48,8 @@
       </table>
       <div class="button-position d-flex align-items-center">
         <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialog()">Mostrar Gráfica</button>
-        <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialogWithoutNumbers()">Mostrar Gráfica sin Números</button>
-
-      </div>
+        <button class="me-3" mat-stroked-button color="primary" >Carrera recomendada: {{prediccion}}</button>
+        </div>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" (page)="onPageChange($event)"
                      [length]="dataSource.data.length" [pageSize]="5" showFirstLastButtons position="both">

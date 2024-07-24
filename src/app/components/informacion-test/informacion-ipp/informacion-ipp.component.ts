@@ -40,6 +40,7 @@ export class InformacionIppComponent implements OnInit, AfterViewInit {
   pregunta: PreguntaippDto[] = [];
   opcion: OpcionIppDto[] = [];
   id_usuario: any;
+  prediccion: any;
 
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
@@ -47,6 +48,7 @@ export class InformacionIppComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.getPrediccion();
 
   }
   ngOnInit(): void {
@@ -116,26 +118,23 @@ export class InformacionIppComponent implements OnInit, AfterViewInit {
       console.log(data);
     });
   }
+  getPrediccion(): void {
+    this.usersService.getPrediccion(this.id_usuario).subscribe(data => {
+      this.prediccion = data;
+      console.log(data);
+    });
+  }
 
   openChartDialog(): void {
   this.dialog.open(GraficaIppComponent, {
     width: '100%',
-    height: '570px',
+    height: '100%',
     data: {
       percentil: this.percentil
     }
   });
 }
-  openChartDialogWithoutNumbers(): void {
-    this.dialog.open(GraficaTestComponent,{
-      width: '900px',
-      height: '420px',
-      data: {
-        total: this.percentil.correct_answers,
-        showNumbers: false
-      }
-    });
-  }
+
   onPageChange(event: any): void {
     this.loadRespuestas();
   }
