@@ -65,4 +65,6 @@ p {
 .navbar-verbal {
   background-color: #11269B;
 }
-
+button[disabled] {
+  color: gray !important;
+}

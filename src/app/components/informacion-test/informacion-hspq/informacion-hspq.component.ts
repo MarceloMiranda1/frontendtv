@@ -116,27 +116,13 @@ export class InformacionHspqComponent implements OnInit {
       console.log(data);
     });
   }
-
-
   openChartDialog(): void {
     const arrayData = Object.entries(this.decatipo).map(([key, value]) => ({valor: value}));
     this.dialog.open(GraficaHspqComponent, {
       width: '100%',
-      height: '450px',
+      height: '90%',
       data: {
         total: arrayData
-      }
-    });
-  }
-  openChartDialogWithoutNumbers(): void {
-    const arrayData = Object.entries(this.decatipo).map(([key, value]) => ({valor: value}));
-
-    this.dialog.open(GraficaTestComponent,{
-      width: '900px',
-      height: '420px',
-      data: {
-        total: this.decatipo,
-        showNumbers: false
       }
     });
   }

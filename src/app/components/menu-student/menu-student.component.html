@@ -21,16 +21,16 @@
   <div class="button-container">
     <button mat-button [matMenuTriggerFor]="menu" >A. Prueba DAT</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onButtonClick()">1. Prueba Verbal</button>
-      <button mat-menu-item (click)="onSecondButtonClick()">2. Prueba Numérica</button>
-      <button mat-menu-item (click)="onThirdButtonClick()">3. Prueba Abstracto</button>
-      <button mat-menu-item (click)="onFourthButtonClick()">4. Prueba Mecánico</button>
-      <button mat-menu-item (click)="onFifthButtonClick()">5. Prueba Espacial</button>
-      <button mat-menu-item (click)="onSixthButtonClick()">6. Prueba Ortografía</button>
-      <button mat-menu-item (click)="onSeventhButtonClick()">7. Prueba Rapidez y Exactitud</button>
+      <button mat-menu-item (click)="onButtonClick()" [disabled]="!test1Enabled" >1. Prueba Verbal</button>
+      <button mat-menu-item (click)="onSecondButtonClick()" [disabled]="!test2Enabled" >2. Prueba Numérica</button>
+      <button mat-menu-item (click)="onThirdButtonClick()" [disabled]="!test3Enabled">3. Prueba Abstracto</button>
+      <button mat-menu-item (click)="onFourthButtonClick()" [disabled]="!test4Enabled">4. Prueba Mecánico</button>
+      <button mat-menu-item (click)="onFifthButtonClick()" [disabled]="!test5Enabled">5. Prueba Espacial</button>
+      <button mat-menu-item (click)="onSixthButtonClick()" [disabled]="!test6Enabled">6. Prueba Ortografía</button>
+      <button mat-menu-item (click)="onSeventhButtonClick()" [disabled]="!test7Enabled">7. Prueba Rapidez y Exactitud</button>
     </mat-menu>
-    <button mat-button routerLink="/instrucciones_ipp">B. Prueba IPP</button>
-    <button mat-button routerLink="/instrucciones_hspq">C. Prueba HSPQ</button>
+    <button mat-button routerLink="/instrucciones_ipp" [disabled]="!test8Enabled">B. Prueba IPP</button>
+    <button mat-button routerLink="/instrucciones_hspq" [disabled]="!test9Enabled">C. Prueba HSPQ</button>
   </div>
   <div class="button-container" *ngIf="showButton" >
     <button mat-button routerLink="/ingenieria-sis">Simulador Ingenieria de Sistemas</button>

@@ -41,7 +41,28 @@ export class InstruccionIppComponent implements OnInit {
     );
   }
   startTest(){
-    this.router.navigate(['/preguntaIpp']);
+    this.getSessionAndUpdateTest();
+  }
+  getSessionAndUpdateTest(): void {
+    this.usersService.getSession().subscribe(
+      data => {
+        this.session = data;
+        const testKey = `test9`;
+        const updateData = { [testKey]: true };
+        this.usersService.updateTest(this.session.id, updateData).subscribe(
+          data => {
+            console.log(`${testKey} updated:`, data);
+            this.router.navigate(['/preguntaIpp']);
+          },
+          error => {
+            console.error(`Error al actualizar ${testKey}:`, error);
+          }
+        );
+      },
+      error => {
+        console.error('Error al obtener la session:', error);
+      }
+    );
   }
 
 }

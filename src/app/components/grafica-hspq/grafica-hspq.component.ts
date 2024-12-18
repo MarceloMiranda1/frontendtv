@@ -21,7 +21,7 @@ export class GraficaHspqComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 350,
+        height: 500,
         toolbar: {
           export: {
             csv: {
@@ -39,31 +39,49 @@ export class GraficaHspqComponent implements OnInit {
       },
       plotOptions: {
         bar: {
-          horizontal: true
+          distributed: true,
+          horizontal: true,
+          barHeight: '20px', // Ajusta este valor según tus necesidades
+          dataLabels: {
+            position: "top" // top, center, bottom
+          }
         }
+
       },
       dataLabels: {
         enabled: false
       },
+      title: {
+        text: "Gráfica Prueba HSPQ",
+        align: 'center',
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        },
+      },
       xaxis: {
         categories: [
-          "Reservado - Abierto",
-          "Emocionalmente Afectado - Estable",
-          "Calmado - Excitable",
-          "Sumiso - Dominante",
-          "Sobrio - Entusiasta",
-          "Despreocupado - Consciente",
-          "Cohibido - Emprendedor",
-          "Sensibilidad Dura - Blanda",
-          "Seguro - Dubitativo",
-          "Sereno - Aprensivo",
-          "Sociable - Autosuficiente",
-          "Menos - Mas integrado",
-          "Relajado - Tenso"
-
+          "Reservado-Abierto",
+          "Afectado-Estable",
+          "Calmado-Excitable",
+          "Sumiso-Dominante",
+          "Sobrio-Entusiasta",
+          "Despreocupado-Consciente",
+          "Cohibido-Emprendedor",
+          "Sensibilidad Dura-Blanda",
+          "Seguro-Dubitativo",
+          "Sereno-Aprensivo",
+          "Sociable-Autosuficiente",
+          "Menos-Mas integrado",
+          "Relajado-Tenso"
         ]
       },
-
+      colors: ['#DE7963', '#DE63AF', '#F5B769', '#63CDDE', '#CEEA5A', '#6376DE', '#63DED1', '#CFA6F8', '#F95C98', '#73E6A6', '#9DFE7E', '#71E6EA', '#9E44F0']
     };
   }
 

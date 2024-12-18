@@ -37,6 +37,7 @@ export class GraficaTestComponent implements OnInit {
       },
       plotOptions: {
         bar: {
+          horizontal: true,
           distributed: true,
           dataLabels: {
             position: "top" // top, center, bottom
@@ -51,7 +52,17 @@ export class GraficaTestComponent implements OnInit {
         }
       },
       title: {
-        text: "Gráfica Prueba DAT"
+        text: "Gráfica Prueba DAT",
+        align: 'center',
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        },
       },
 
       xaxis: {

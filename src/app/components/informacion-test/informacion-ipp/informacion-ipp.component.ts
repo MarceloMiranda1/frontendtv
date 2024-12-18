@@ -128,7 +128,7 @@ export class InformacionIppComponent implements OnInit, AfterViewInit {
   openChartDialog(): void {
   this.dialog.open(GraficaIppComponent, {
     width: '100%',
-    height: '100%',
+    height: '90%',
     data: {
       percentil: this.percentil
     }
@@ -137,6 +137,14 @@ export class InformacionIppComponent implements OnInit, AfterViewInit {
 
   onPageChange(event: any): void {
     this.loadRespuestas();
+  }
+  formatPrediction(prediccion: any): string {
+    if (!prediccion) {
+      return '-';
+    }
+
+    let strPrediccion = prediccion.toString();
+    return strPrediccion.replace(//g, '-');
   }
 
 

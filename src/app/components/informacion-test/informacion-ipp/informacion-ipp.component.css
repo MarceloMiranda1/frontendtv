@@ -46,6 +46,10 @@ h1{
 .disabled-button:disabled {
   color: black; /* Cambia el color del texto a negro */
 }
+.button-wrap-text {
+  white-space: normal;
+  word-wrap: break-word;
+}
 
 
 

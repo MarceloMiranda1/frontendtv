@@ -63,7 +63,6 @@ export class UsersService {
     password: password
   };
     console.log('exitoso1');
-
     return this.http.post<Usuariodto>(url, body).pipe(
     map(user => {
       console.log(user);
@@ -78,6 +77,10 @@ export class UsersService {
     })
   );
 }
+  // src/app/users.service.ts
+  updateTest(userId: number, testData: Partial<Usuariodto>): Observable<Usuariodto> {
+    return this.http.put<Usuariodto>(`${this.url2}update_test/${userId}/`, testData);
+  }
 
   getGroup(user_id: number): Observable<UsuarioGrupoDto> {
   return this.http.get<UsuarioGrupoDto>(`${this.url}user_group/${user_id}`);

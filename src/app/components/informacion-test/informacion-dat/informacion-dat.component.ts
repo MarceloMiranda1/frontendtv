@@ -109,8 +109,8 @@ export class InformacionDatComponent implements OnInit, AfterViewInit {
 
   openChartDialog(): void {
     this.dialog.open(GraficaTestComponent,{
-      width: '100%',
-      height: '100%',
+      width: '900px',
+      height: '420px',
       data: {
         total: this.conversion,
         showNumbers: true

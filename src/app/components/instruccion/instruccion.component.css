@@ -59,5 +59,9 @@ form {
 .form-check-input {
   order: -1;
 }
+.img-size {
+  width: 100%; /* Ajusta el ancho según tu preferencia */
+  height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+}
 
 

@@ -52,6 +52,19 @@ export class GraficaIppComponent implements OnInit {
       dataLabels: {
         enabled: false
       },
+      title: {
+        text: "Gráfica Prueba IPP",
+        align: 'center',
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        },
+      },
       stroke: {
         show: true,
         width: 2,
@@ -76,14 +89,15 @@ export class GraficaIppComponent implements OnInit {
           "Militar-Seguridad",
           "Aventura-Riesgo",
           "Mecánico-Manual"
-        ]
-
-      },
-      yaxis: {
-        title: {
-          text: "Puntaje"
+        ],
+        labels: {
+          rotate: -45, // Ajusta este valor según tus necesidades
+          style: {
+            fontSize: '14px',
+          }
         }
       },
+
       fill: {
         opacity: 1
       },

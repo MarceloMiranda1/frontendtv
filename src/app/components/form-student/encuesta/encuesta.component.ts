@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TutorDto} from "../../../dto/tutorDto";
 import {EncuestaDto} from "../../../dto/encuestaDto";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-encuesta',
@@ -27,7 +28,7 @@ export class EncuestaComponent implements OnInit {
 
   form = new FormGroup({
     pregunta1: new FormControl('', Validators.required),
-    pregunta2: new FormControl('', Validators.required),
+    pregunta2: new FormControl(''),
     pregunta3: new FormControl('', Validators.required),
     pregunta4: new FormControl('', Validators.required),
     pregunta5: new FormControl('', Validators.required),
@@ -58,6 +59,12 @@ export class EncuestaComponent implements OnInit {
       };
       this.userService.addEncuesta(this.id, encuestaDto).subscribe(data => {
         this.router.navigate(['/login_students']);
+        Swal.fire({
+          title: '¡Felicidades!',
+          text: 'Te has registrado exitosamente en la plataforma del SOV. Estamos aquí para apoyarte en tu camino hacia el futuro profesional',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
       });
     }
   }

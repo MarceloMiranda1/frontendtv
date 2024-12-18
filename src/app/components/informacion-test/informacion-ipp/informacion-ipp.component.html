@@ -7,7 +7,6 @@
       <div class="button-position d-flex align-items-center">
         <button class="btn btn-success mb-3 me-3" (click)="$event.preventDefault(); exporter.exportTable('xlsx', {fileName: users.first_name + '_' + users.last_name + '_Informe_Ipp'})">Exportar</button>
 
-        <!-- Botón vinculado al menú -->
         <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionDat/{{users.id}}">DAT</button>
         <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionIpp/{{users.id}}">IPP</button>
         <button class="mb-3 me-3" mat-flat-button color="primary" routerLink="/informacionHspq/{{users.id}}">HSPQ</button>
@@ -48,8 +47,8 @@
       </table>
       <div class="button-position d-flex align-items-center">
         <button class="me-3" mat-stroked-button color="primary"  (click)="openChartDialog()">Mostrar Gráfica</button>
-        <button class="me-3" mat-stroked-button color="primary" >Carrera recomendada: {{prediccion}}</button>
-        </div>
+        <button class="me-3 button-wrap-text" mat-stroked-button color="primary" >Carreras: {{formatPrediction(prediccion)}}</button>
+      </div>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" (page)="onPageChange($event)"
                      [length]="dataSource.data.length" [pageSize]="5" showFirstLastButtons position="both">

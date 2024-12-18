@@ -31,9 +31,19 @@ export class MenuStudentComponent implements OnInit {
   opcion: any;
   posicion: any;
   lenght: any;
+  valor: any;
   prediccion: any;
   showButton = false;
   isVerbalTestSelected = false;
+  test1Enabled = false;
+  test2Enabled = false;
+  test3Enabled = false;
+  test4Enabled = false;
+  test5Enabled = false;
+  test6Enabled = false;
+  test7Enabled = false;
+  test8Enabled = false;
+  test9Enabled = false;
 
   constructor(private changeDetector: ChangeDetectorRef,private usersService: UsersService, private router: Router) { }
 
@@ -46,6 +56,15 @@ export class MenuStudentComponent implements OnInit {
       data => {
         this.session = data;
         console.log(this.session);
+        this.test1Enabled = this.session.test1;
+        this.test2Enabled = this.session.test2;
+        this.test3Enabled = this.session.test3;
+        this.test4Enabled = this.session.test4;
+        this.test5Enabled = this.session.test5;
+        this.test6Enabled = this.session.test6;
+        this.test7Enabled = this.session.test7;
+        this.test8Enabled = this.session.test8;
+        this.test9Enabled = this.session.test9;
         this.getPrediccion();
       },
       error => {
@@ -70,7 +89,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 1;
     this.lenght = 5;
     this.posicion = 0;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion } });
+    this.valor = 2;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
   onSecondButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -84,7 +104,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 12;
     this.lenght = 5;
     this.posicion = 1;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion  } });
+    this.valor = 3;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
   onThirdButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -99,7 +120,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 83;
     this.lenght = 5;
     this.posicion = 2;
-    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion} });
+    this.valor = 4;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor} });
   }
   onFourthButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -113,7 +135,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 124;
     this.lenght = 3;
     this.posicion = 3;
-    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion } });
+    this.valor = 5;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
   onFifthButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -127,7 +150,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 185;
     this.lenght = 4;
     this.posicion = 4;
-    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion } });
+    this.valor = 6;
+    this.router.navigate(['/instruccion_grafico'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
   onSixthButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -141,7 +165,8 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 236;
     this.lenght = 4;
     this.posicion = 5;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion } });
+    this.valor = 7;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
   onSeventhButtonClick(): void {
     if (this.trigger.menuOpen) {
@@ -155,15 +180,16 @@ export class MenuStudentComponent implements OnInit {
     this.opcion = 277;
     this.lenght = 5;
     this.posicion = 6;
-    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion } });
+    this.valor = 8;
+    this.router.navigate(['/instrucciones'], { queryParams: { test: this.test, seccion: this.seccion, pregunta: this.pregunta, opcion: this.opcion, lenght: this.lenght, posicion: this.posicion, valor: this.valor } });
   }
 
   getPrediccion(): void {
     this.usersService.getPrediccion(this.session.id).subscribe(data => {
       this.prediccion = data;
-      this.showButton = this.prediccion[0] === 'Ingenieria de Sistemas';
+      console.log(this.prediccion)
+      this.showButton = this.prediccion[0].includes('Sistemas');
     });
   }
-
 
 }

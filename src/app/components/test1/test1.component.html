@@ -12,7 +12,7 @@
     <div class="mb-2">
       <form>
         <label class="form-label mb-3" [innerHTML]="pregunta_actual.nro_pregunta + '.- ' + pregunta_actual.texto_pregunta"></label>
-        <img class="mb-3" *ngIf="isImageUrl(pregunta_actual.imagen)" [src]="pregunta_actual.imagen" alt="Imagen">
+        <img class="img-size mb-3" *ngIf="isImageUrl(pregunta_actual.imagen)" [src]="pregunta_actual.imagen" alt="Imagen">
         <div class="mb-3" *ngIf="!isImageUrl(pregunta_actual.imagen)"><span>{{pregunta_actual.imagen}}</span></div>
         <div class="form-check mb-3" *ngFor="let x of contadorArray " >
           <label class="form-check-label" style="float: left;">

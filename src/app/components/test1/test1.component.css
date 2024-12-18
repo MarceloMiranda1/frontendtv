@@ -62,5 +62,9 @@ form {
 .form-label {
   line-height: 1; /* Ajusta este valor según tu preferencia */
 }
+.img-size {
+  width: 80%; /* Ajusta el ancho según tu preferencia */
+  height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+}
 
 

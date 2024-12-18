@@ -19,7 +19,7 @@ export class ViewStudentComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: MatTableDataSource<Usuariodto> = new MatTableDataSource<Usuariodto>([]);
-  displayedColumns: string[] = ['ID', 'nombre', 'apellido', 'ci', 'edad', 'sexo', 'correo', 'acciones'];
+  displayedColumns: string[] = ['ID', 'nombre', 'apellido', 'ci', 'edad', 'sexo', 'correo', 'celular', 'acciones'];
 
   users: any|undefined
   tutor: any|undefined

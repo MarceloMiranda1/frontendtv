@@ -20,6 +20,7 @@ export class InstruccionComponent implements OnInit {
   lenghtParam: any = "";
   posicionParam: any = "";
   opcionEnviar: any = "";
+  valorParam: any = "";
   constructor(private usersService: UsersService, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -31,6 +32,7 @@ export class InstruccionComponent implements OnInit {
       this.opcionParam = params['opcion'];
       this.lenghtParam = params['lenght'];
       this.posicionParam = params['posicion'];
+      this.valorParam = params['valor'];
 
       this.contadorArray = Array.from({length: this.lenghtParam}, (_, index) => index);
 
@@ -52,6 +54,7 @@ export class InstruccionComponent implements OnInit {
       }
     );
   }
+
   getTest(testParam: number): void {
     this.usersService.test(testParam).subscribe((data) => {
         this.test = data;
@@ -94,8 +97,30 @@ export class InstruccionComponent implements OnInit {
       }
     );
   }
-  startTest(){
-    this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionEnviar , lenght: this.lenghtParam, posicion: this.posicionParam } });
+  startTest(): void {
+    this.getSessionAndUpdateTest();
+  }
+
+  getSessionAndUpdateTest(): void {
+    this.usersService.getSession().subscribe(
+      data => {
+        this.session = data;
+        const testKey = `test${this.valorParam}`;
+        const updateData = { [testKey]: true };
+        this.usersService.updateTest(this.session.id, updateData).subscribe(
+          data => {
+            console.log(`${testKey} updated:`, data);
+            this.router.navigate(['/pregunta'], { queryParams: { seccion: this.seccionParam, pregunta: this.preguntaParam, opcion: this.opcionEnviar, lenght: this.lenghtParam, posicion: this.posicionParam } });
+          },
+          error => {
+            console.error(`Error al actualizar ${testKey}:`, error);
+          }
+        );
+      },
+      error => {
+        console.error('Error al obtener la session:', error);
+      }
+    );
   }
 
   isImageUrl(url: string): boolean {

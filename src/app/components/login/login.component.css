@@ -3,16 +3,13 @@ body {
   font-weight: normal;
   font-size: 100%;
   color: #1b262c;
-
   margin: 0;
-  background-color: #0f4c75;
+  background-color: #FFD433;
 }
-
 #contenedor {
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin: 0;
   padding: 0;
   min-width: 100vw;
@@ -28,7 +25,7 @@ body {
 
 .titulo {
   font-size: 250%;
-  color:#bbe1fa;
+  color: #ffe8a5;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -36,7 +33,7 @@ body {
 #login {
   width: 100%;
   padding: 50px 30px;
-  background-color: #3282b8;
+  background-color: #e8c866;
 
   -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
   -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
@@ -71,7 +68,7 @@ body {
 
 #login input::placeholder {
   font-family: 'Overpass', sans-serif;
-  color: #E4E4E4;
+  color: #bdbdbd;
 }
 
 #login button {
@@ -93,7 +90,7 @@ body {
 
 #login button:hover {
   background-color: #0f4c75;
-  color:#bbe1fa;
+  color: #e8bbfa;
 }
 
 .pie-form {
@@ -128,4 +125,7 @@ body {
 
 .inferior a:hover {
   color: #3282b8;
+}
+nav{
+  background-color: #002244;
 }
