@@ -7,7 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 @Component({
   selector: 'app-form-student',
   templateUrl: './form-student.component.html',
-  styleUrls: ['./form-student.component.css']
+  styleUrls: ['./form-student.component.css', './../../estilos/estilos1.css']
 })
 export class FormStudentComponent implements OnInit {
 

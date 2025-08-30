@@ -12,7 +12,7 @@ import {MatTableDataSource} from "@angular/material/table";
 @Component({
   selector: 'app-view-student',
   templateUrl: './view-student.component.html',
-  styleUrls: ['./view-student.component.css']
+  styleUrls: ['./view-student.component.css', './../../estilos/estilos1.css']
 })
 export class ViewStudentComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

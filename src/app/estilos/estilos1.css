@@ -1,0 +1,31 @@
+ /* Colores del sistema*/
+.color-nav-primario{
+  background-color: var(--color-primario);
+}
+ th{
+  background-color: var(--color-primario);
+  color: white;
+  font-family: Arial;
+ }
+ /* Login admin*/
+ .color-body-a{
+  background-color: var(--color-secundario);
+ }
+ .titulo{
+   color: var(--color-secundario);
+ }
+ #login{
+   background-color: var(--color-primario);
+ }
+ #login input::placeholder {
+   color: #bdbdbd;
+ }
+ #login button{
+   background-color: var(--color-secundario);
+   color: black;
+ }
+ #login button:hover {
+   background-color: #65cdb7;
+   color: var(--color-secundario);
+ }
+

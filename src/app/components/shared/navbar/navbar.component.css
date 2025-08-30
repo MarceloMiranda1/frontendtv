@@ -20,9 +20,6 @@ h1{
   left: 50%;
   transform: translateX(-50%);
 }
-nav{
-  background-color: #002244;
-}
 .nav-link:hover {
   color: #dad7d7; /* Cambia el color del texto al pasar el mouse */
 }

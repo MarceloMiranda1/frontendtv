@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-login-students',
   templateUrl: './login-students.component.html',
-  styleUrls: ['./login-students.component.css']
+  styleUrls: ['./login-students.component.css', './../../../estilos/estilos1.css']
 })
 export class LoginStudentsComponent {
   usuarioDto : Usuariodto = {} as Usuariodto;

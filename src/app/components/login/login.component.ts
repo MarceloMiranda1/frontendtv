@@ -8,7 +8,7 @@ import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', './../../estilos/estilos1.css']
 })
 export class LoginComponent {
   usuarioDto : Usuariodto = {} as Usuariodto;

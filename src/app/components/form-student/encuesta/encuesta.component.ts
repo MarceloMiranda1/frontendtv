@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-encuesta',
   templateUrl: './encuesta.component.html',
-  styleUrls: ['./encuesta.component.css']
+  styleUrls: ['./encuesta.component.css', './../../../estilos/estilos1.css']
 })
 export class EncuestaComponent implements OnInit {
   user: any

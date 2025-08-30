@@ -10,7 +10,7 @@ import {UsuarioGrupoDto} from "../../dto/usuarioGrupoDto";
 @Component({
   selector: 'app-view-user',
   templateUrl: './view-user.component.html',
-  styleUrls: ['./view-user.component.css']
+  styleUrls: ['./view-user.component.css', './../../estilos/estilos1.css']
 })
 export class ViewUserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

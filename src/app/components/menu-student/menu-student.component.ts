@@ -6,7 +6,7 @@ import {MatMenuTrigger} from "@angular/material/menu";
 @Component({
   selector: 'app-menu-student',
   templateUrl: './menu-student.component.html',
-  styleUrls: ['./menu-student.component.css']
+  styleUrls: ['./menu-student.component.css', './../../estilos/estilos1.css']
 })
 export class MenuStudentComponent implements OnInit {
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
